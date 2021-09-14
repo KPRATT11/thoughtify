@@ -5,6 +5,7 @@ require_relative '../helpers/auth.rb'
 require_relative '../helpers/globals.rb'
 require_relative 'vote.rb'
 require_relative 'follower.rb'
+require_relative 'comment.rb'
 
 module Thought
     def self.user_owns_thought(thought_id, user_id)
@@ -84,6 +85,8 @@ module Thought
     def self.delete_thought_by_id(id)
         if self.user_owns_thought(id, current_user_id)
             exec_sql("DELETE FROM posts WHERE id = #{id}")
+            Comment.delete_comments_by_post_id(id)
+            Vote.delete_votes_by_post_id(id)
             return true
         end
         return false

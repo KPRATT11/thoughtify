@@ -45,14 +45,14 @@ module User
         return exec_sql("SELECT * FROM users")
     end
 
-    def self.post_user(name, email, password)
+    def self.post_user(first_name, second_name, email, password)
         # find if email exists
-        if self.find_user_by_email(email)
+        if self.get_single_user_by_email(email)
             return false
         end
         digested_password = digest_password(password)
         creation_date = Time.now.strftime("%d/%m/%Y %H:%M")
-        exec_sql("INSERT INTO users (first_name, last_name, email, password_digest, date) VALUES ('#{first_name}', '#{second_name}', '#{email}', '#{digested_password}', '#{creation_date}');")
+        exec_sql("INSERT INTO users (first_name, last_name, email, password_digest, created_at) VALUES ('#{first_name}', '#{second_name}', '#{email}', '#{digested_password}', '#{creation_date}');")
         return true
     end
 

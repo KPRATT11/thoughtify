@@ -39,6 +39,7 @@ module Follower
 
     def self.delete_follows_by_user_id(user_id)
         exec_sql("DELETE FROM followers WHERE follower = #{user_id}")
-        
+        exec_sql("DELETE FROM  WHERE follow_target = #{user_id}")
+        return true
     end
 end

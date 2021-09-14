@@ -1,0 +1,11 @@
+<div CLASS="thoughts-container">
+    <% thoughts.each do |thought|%>
+        <div>
+            <% user = User.get_single_user_by_id(thought["user_id"])%>
+            <a href="/thought/<%= thought["id"] %>"><h2><%= thought["title"] %></h2></a>
+            <a href="/user/<%= user["id"] %>"><p><%= user["first_name"]%> <%= user["last_name"]%></p></a>
+            <a href="/thought/<%= thought["id"] %>"><h4> <%= thought["content"]%> </h4></a> 
+            <p>-----------</p>
+        </div>
+    <% end %>
+</div>

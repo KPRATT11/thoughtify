@@ -5,47 +5,56 @@ key -
 
 User Model
 
-    get_all_users()
+    get-single-user-by-email() -- done = tested
+
+    get_all_users() -- done = tested
         -array of all users
     
-    get_single_user_by_id(user_id)
+    get_single_user_by_id(user_id) -- done = tested
         -single user
     
     get_some_users_by_search(search_query)
         -array of some users
 
-    post_user(email, name, password_digest, profile_pic, bio)
+    post_user(email, name, password_digest, profile_pic, bio) -- dont = tested
         -add user to database as long as everything is all validated
 
+    delete_user -- done = tested
+
+    path_user_bio_by_id() -- done = tested
     
 
 Thought Model
 
-    get_all_thoughts(page_num)
+    get_all_thoughts(page_num) -- done = tested
         -array of all posts
 
     get_all_thoughts_and_votes(page_num)
         -array of posts, inside each post should be an array of like
             ~get all the posts, then use the .each loop to get all the likes for it
 
-    get_single_thought_and_votes_by_id(post_id)
+    get_single_thought_and_votes_by_id(post_id) -- done
         -single post with likes 
+
+    get_single_thought_by_id -- done = tested
 
     get_some_comments_and_votes_by_thought_id(post_id)
         -all comments based on post id
     
-    post_thought(user_id, tought_title, thought_content, date)
+    post_thought(user_id, tought_title, thought_content, date) -- done = tested
         -add thought to database
 
-    put_thought_by_id(id, thought_title, thought_conent)
+    put_thought_by_id(id, thought_title, thought_conent) -- done = tested
         -modify thought in database
 
     delete_thought_by_id(id)
         -remove throught in database
 
 Vote model
-    get_single_vote_by_user(user_id) //should be called on every post comment to 
+    get_has_user_voted_by_userId(user_id) //should be called on every post comment to 
                                         check if user has already voted
+
+    get_some_votes_by_thought_id(post_id)
 
     post_vote(userId, type, target_id)
 
