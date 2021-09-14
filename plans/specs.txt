@@ -1,0 +1,6 @@
+post Page Size: 15
+max post Limit: 300char
+date format: yyyy/mm/dd hr/min/sec 
+all interaction must require user log in
+post edit: 15 mins
+post comment: 15 mins

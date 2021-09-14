@@ -1,0 +1,11 @@
+get-all - returns every thing in that table, or max of pages
+get-single - returns only a single item no more
+get-some - returns a portion of results based on filer
+
+~~ get-some and get-single should have `by-` stating what its using to filter
+
+should follow the http naming system with first word being the intended method
+only get needs to define how many ~~ maybe
+
+any tiee the current user needs to be checked it should always be
+grabbed by the session id, through the auth helper function

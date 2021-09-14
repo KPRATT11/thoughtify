@@ -1,0 +1,64 @@
+key -
+    Function()
+        -intended output
+            ~additional comments
+
+User Model
+
+    get_all_users()
+        -array of all users
+    
+    get_single_user_by_id(user_id)
+        -single user
+    
+    get_some_users_by_search(search_query)
+        -array of some users
+
+    post_user(email, name, password_digest, profile_pic, bio)
+        -add user to database as long as everything is all validated
+
+    
+
+Thought Model
+
+    get_all_thoughts(page_num)
+        -array of all posts
+
+    get_all_thoughts_and_votes(page_num)
+        -array of posts, inside each post should be an array of like
+            ~get all the posts, then use the .each loop to get all the likes for it
+
+    get_single_thought_and_votes_by_id(post_id)
+        -single post with likes 
+
+    get_some_comments_and_votes_by_thought_id(post_id)
+        -all comments based on post id
+    
+    post_thought(user_id, tought_title, thought_content, date)
+        -add thought to database
+
+    put_thought_by_id(id, thought_title, thought_conent)
+        -modify thought in database
+
+    delete_thought_by_id(id)
+        -remove throught in database
+
+Vote model
+    get_single_vote_by_user(user_id) //should be called on every post comment to 
+                                        check if user has already voted
+
+    post_vote(userId, type, target_id)
+
+    delete_vote_by_user(user_id)
+
+Comment model
+    get_some_by_post(thought_id)
+
+    put_comment_by_id(user, content)
+
+    delete_comment_by_id(thougt_id)
+
+    post_comment(user_id, content)
+
+Topic models
+    post_topic_by_post_id(topic, post_id)
