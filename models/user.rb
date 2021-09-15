@@ -45,6 +45,22 @@ module User
         return exec_sql("SELECT * FROM users")
     end
 
+    def self.get_some_users_by_search_query(search_query)
+        split_query = search_query.split(" ")
+
+        if split_query.length > 1
+            results = exec_sql("SELECT * FROM users 
+                WHERE 
+                first_name like '%#{split_query[0]}%' OR 
+                first_name like '%#{split_query[1]}%' OR 
+                last_name like '%#{split_query[0]}%' OR 
+                last_name like '%#{split_query[1]}%';")
+        else
+            results = exec_sql("SELECT * FROM users WHERE first_name like '%#{split_query[0]}%' or last_name like '%#{split_query[0]}%';")
+        end
+        return results
+    end
+
     def self.post_user(first_name, second_name, email, password)
         # find if email exists
         if self.get_single_user_by_email(email)
@@ -63,10 +79,8 @@ module User
 
     def self.patch_user_bio_by_id(new_bio, id)
         new_bio = Sanitize.escape_quote(new_bio)
-        if is_current_user?(id)
-            exec_sql("UPDATE users SET bio = '#{new_bio}' WHERE id = #{id};")
-            return true
-        end
+        exec_sql("UPDATE users SET bio = '#{new_bio}' WHERE id = #{id};")
+        return true
         return false
     end
 end

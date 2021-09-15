@@ -29,25 +29,20 @@ module Vote
     end
 
     def self.post_vote_for_target(user_id, type, target_id, target)
-        if is_current_user?(user_id)
-            exec_sql("INSERT INTO votes (user_id, target, target_id, type) VALUES
-            (
-                #{user_id.to_i},
-                ('#{target}'),
-                #{target_id.to_i},
-                ('#{type}')
-            )
-            ")
-        end
+        exec_sql("INSERT INTO votes (user_id, target, target_id, type) VALUES
+        (
+            #{user_id.to_i},
+            ('#{target}'),
+            #{target_id.to_i},
+            ('#{type}')
+        )
+        ")
         return true
     end
 
     def self.delete_vote_by_user(user_id, type, target_id)
-        if is_current_user?(user_id)
-            exec_sql("DELETE FROM votes WHERE user_id = #{user_id.to_i} AND type = ('#{type}') and target_id = #{target_id}")
-            return true
-        end
-        return false
+        exec_sql("DELETE FROM votes WHERE user_id = #{user_id.to_i} AND type = ('#{type}') and target_id = #{target_id}")
+        return true
     end
 
     def self.delete_votes_by_post_id(post_id)
@@ -56,9 +51,7 @@ module Vote
     end
 
     def self.delete_votes_on_target_by_user_id(user_id, thought_id, target)
-        if is_current_user?(user_id)
-            exec_sql("DELETE FROM votes WHERE user_id = #{user_id} AND target_id = #{thought_id} AND target = '#{target}'")
-        end
+        exec_sql("DELETE FROM votes WHERE user_id = #{user_id} AND target_id = #{thought_id} AND target = '#{target}'")
         return false 
     end
 

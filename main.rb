@@ -8,22 +8,30 @@ require_relative 'models/user.rb'
 require_relative 'models/vote.rb'
 require_relative 'helpers/auth.rb'
 
+$TESTING = true
 
 #CONSTANTS
 RD_POST = 307
 
 #Include Model Modules
 include User
-
-
 enable :sessions
 
 get "/" do
+    p logged_in?
+    if $TESTING
+        session[:user_id] = 1
+        redirect "/0"
+    end
     redirect "/0"
 end
 
 get "/login" do
     erb(:login)
+end
+
+get "/signup" do
+    erb(:create_user)
 end
 
 # Thoughts
@@ -36,12 +44,7 @@ get "/edit-thought/:id" do
     erb(:edit_thought, locals: {thought: thought})
 end
 
-get "/:page" do
-    all_thoughts = Thought.get_all_thoughts_and_votes(params[:page].to_i)
-    erb(:index, locals: {
-        thoughts: all_thoughts
-    })
-end
+
 
 get "/thought/:id" do
     comments = Comment.get_some_comments_by_thought(params[:id])
@@ -144,15 +147,19 @@ end
 
 
 # Handle Users
-
+get "/search_user" do
+    search_query = params[:search_q]
+    results = User.get_some_users_by_search_query(search_query)
+    erb(:search_user_results, locals: {results: results})
+end
 
 get "/users" do
     "display Users"
 end
 
 post "/user" do
-    User.post_user(params[:name], params[:email], params[:password])
-    redirect "/session", RD_POST
+    User.post_user(params[:first_name], params[:second_name], params[:email], params[:password])
+    redirect "/login"
 end
 
 put "/user/:id" do
@@ -168,7 +175,21 @@ delete "/user" do
 end
 
 get "/user/:id" do
-    "display user profile"
+    user = User.get_single_user_by_id(params[:id])
+    thoughts = Thought.get_some_thoughts_and_votes_by_user_id(params[:id], 0)
+    erb(:user_page, locals: { user: user, thoughts: thoughts})
+end
+
+post "/follow" do
+    redirect back unless logged_in?
+    Follower.post_follow(current_user_id, params[:target_id])
+    redirect back
+end
+
+delete "/follow" do
+    redirect back unless logged_in?
+    Follower.delete_follow(current_user_id, params[:target_id])
+    redirect back
 end
 
 get "/user/:id/following" do
@@ -177,4 +198,13 @@ end
 
 get "/user/:id/followers" do
     "display followers"
+end
+
+
+#this is last becuase of the matching I may rewrite the routes for this but tbh right now there is so much to fo oh my god there is so much to do
+get "/:page" do
+    all_thoughts = Thought.get_all_thoughts_and_votes(params[:page].to_i)
+    erb(:index, locals: {
+        thoughts: all_thoughts
+    })
 end

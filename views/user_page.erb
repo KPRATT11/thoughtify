@@ -1,6 +1,29 @@
-<a href="/create-thought">post a tought</a>
+<h1><%= user["first_name"] %> <%= user["last_name"] %></h1>
+<% if logged_in? %>
+    <% if Follower.is_following?(current_user_id, user["id"] )%>
+        <form action="/follow" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="hidden" name="target_id" value=<%= user["id"] %>>
+            <button>unfollow</button>
+        </form>
+    <%else%>
+        <form action="/follow" method="post">
+            <input type="hidden" name="target_id" value=<%= user["id"] %>>
+            <button>follow</button>
+        </form>
+    <%end%>
+<%end%>
+<h3>bio</h3>
+<div class="tabs">
+    <form action="">
+        <button>followers</button>
+    </form>
+    <form action="">
+        <button>following</button>
+    </form>
+</div>
 
-<div class="thoughts-container">
+<div class="post-containers">
     <% thoughts.each do |thought|%>
         <div>
             <% user = User.get_single_user_by_id(thought["user_id"])%>
@@ -52,11 +75,4 @@
             <p>-----------</p>
         </div>
     <% end %>
-
-    <form action="/search_user">
-        <input type="text" name="search_q">
-        <button>Search</button>
-    </form>
 </div>
-
-<script src="scripts/scrollPersistor.js"></script>

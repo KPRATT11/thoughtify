@@ -35,6 +35,24 @@ module Thought
         return processed_results
     end
 
+    def self.get_some_thoughts_by_user_id(user_id, page_num)
+        offset = GLB_PAGE_SIZE * page_num
+        results = exec_sql("SELECT * FROM posts WHERE user_id = '#{user_id}' ORDER BY post_date DESC LIMIT #{GLB_PAGE_SIZE} OFFSET #{offset}")
+        return results
+    end
+
+    def self.get_some_thoughts_and_votes_by_user_id(user_id, page_num)
+        results = self.get_some_thoughts_by_user_id(user_id, page_num)
+        processed_results = []
+        results.each do |result|
+            votes = Vote.get_some_votes_by_thought_id(result["id"])
+            result["likes"] = votes[0]
+            result["dislikes"] = votes[1]
+            processed_results.push(result)
+        end
+        return processed_results
+    end
+
     def self.get_all_thoughts_by_following(user_id)
         results = Follower.get_all_following_by_userId(user_id).to_a
         all_user_ids = '('

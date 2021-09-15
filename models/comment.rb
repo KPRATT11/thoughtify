@@ -30,11 +30,9 @@ module Comment
     end
 
     def self.delete_comment_by_id(id, user_id)
-        if is_current_user?(user_id)
-            exec_sql("DELETE FROM comments WHERE id = #{id}")
-            Vote.delete_votes_by_comment_id(id)
-            return true
-        end
+        exec_sql("DELETE FROM comments WHERE id = #{id}")
+        Vote.delete_votes_by_comment_id(id)
+        return true
         return false
     end
 
