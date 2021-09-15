@@ -1,11 +1,52 @@
-<div CLASS="thoughts-container">
+<a href="/create-thought">post a tought</a>
+
+<div class="thoughts-container">
     <% thoughts.each do |thought|%>
         <div>
             <% user = User.get_single_user_by_id(thought["user_id"])%>
+            <% votes = Vote.get_some_votes_by_thought_id(thought["id"])%>
             <a href="/thought/<%= thought["id"] %>"><h2><%= thought["title"] %></h2></a>
+            <form action="/thought/<%= thought["id"] %>" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <button>delete</button>
+            </form>
+            <form action="/edit-thought/<%= thought["id"] %>" method="get">
+                <button>edit</button>
+            </form>
             <a href="/user/<%= user["id"] %>"><p><%= user["first_name"]%> <%= user["last_name"]%></p></a>
             <a href="/thought/<%= thought["id"] %>"><h4> <%= thought["content"]%> </h4></a> 
+
+            <% if !Vote.get_has_user_voted_by_userId(current_user_id(), thought["id"], "post", "like") %> 
+                <form action="/vote/like/<%= thought["id"] %>" method="post">
+                    <input type="hidden" name="target" value="post">
+                    <button >like</button>
+                </form>  
+            <% else %>
+                <form action="/vote/<%= thought["id"] %>" method="post">
+                    <input type="hidden" name="target" value="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <button >unlike</button>
+                </form> 
+            <% end %>
+
+            <p>likes: <%= votes[0].length %></p> 
+            <p>dislikes: <%= votes[1].length %></p>
+
+            <% if !Vote.get_has_user_voted_by_userId(current_user_id(), thought["id"], "post", "dislike") %> 
+                <form action="/vote/dislike/<%= thought["id"] %>" method="post">
+                    <input type="hidden" name="target" value="post">
+                    <button >dislike</button>
+                </form>  
+            <% else %>
+                <form action="/vote/<%= thought["id"] %>" method="post">
+                    <input type="hidden" name="target" value="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <button >undislike</button>
+                </form> 
+            <% end %>
             <p>-----------</p>
         </div>
     <% end %>
 </div>
+
+<script src="scripts/scrollPersistor.js"></script>
