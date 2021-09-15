@@ -6,12 +6,12 @@ require_relative '../helpers/auth.rb'
 
 module Comment
     def self.get_single_comment_by_id(comment_id)
-        results = exec_sql("SELECT * FROM comments WHERE id = #{comment_id}")
+        results = exec_sql("SELECT * FROM comments WHERE id = #{comment_id}").to_a[0 ]
     end
 
     def self.user_owns_comment(comment_id, user_id)
         comment = self.get_single_comment_by_id(comment_id)
-        if comment["user_id"].to_i == user_id
+        if comment["user_id"].to_i == user_id.to_i
             return true
         end
         return false
@@ -22,11 +22,8 @@ module Comment
     end
 
     def self.put_comment_by_id(id, content, user_id)
-        if is_current_user?(user_id)
-            exec_sql("UPDATE comments SET content = '#{content}' where id = #{id}")
-            return true
-        end
-        return false
+        exec_sql("UPDATE comments SET content = '#{content}' where id = #{id}")
+        return true
     end
 
     def self.delete_comment_by_id(id, user_id)

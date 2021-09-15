@@ -94,11 +94,26 @@ post "/comment/:id" do
 end
 
 delete "/comment/:id" do
-    "delete a comment and redirect back to post"
+    redirect back unless logged_in?
+    Comment.delete_comment_by_id(params[:id])
+    redirect "/"
 end
 
 put "/comment/:id" do
-    "update a comment and redirect back to post"
+    redirect back unless logged_in?
+    content = params[:content]
+    comment = Comment.get_single_comment_by_id(params[:id])
+    if content.length > 0
+        Comment.put_comment_by_id(params[:id], content, current_user_id)
+        redirect "/thought/#{comment["target_id"]}"
+    end
+    redirect back
+end
+
+get "/edit-comment/:id" do
+    redirect back unless logged_in?
+    comment = Comment.get_single_comment_by_id(params[:id])
+    erb(:edit_comment, locals: {comment: comment})
 end
 
 # vote 
@@ -114,15 +129,6 @@ delete "/vote/:target_id" do
     redirect back unless logged_in?
     Vote.delete_votes_on_target_by_user_id(current_user_id, params[:target_id], params[:target])
     redirect back
-end
-
-# Following
-post "/follow/:target_id" do
-    "follow new user based on target id, get user id from current logged on"
-end
-
-delete "/follow/:target_id" do
-    "delete follow based on target id"
 end
 
 # Handle Sessions
@@ -217,10 +223,20 @@ delete "/follow" do
     redirect back
 end
 
+get "/followed_thoughts/:page" do
+    followed_thoughts = Thought.get_all_thoughts_and_votes_by_following(current_user_id)
+    erb(:index, locals: {
+        thoughts: followed_thoughts,
+        displaying: 'following'
+    })
+end
+
 #this is last becuase of the matching I may rewrite the routes for this but tbh right now there is so much to fo oh my god there is so much to do
 get "/:page" do
     all_thoughts = Thought.get_all_thoughts_and_votes(params[:page].to_i)
     erb(:index, locals: {
-        thoughts: all_thoughts
+        thoughts: all_thoughts,
+        displaying: 'all'
     })
 end
+

@@ -59,10 +59,24 @@ module Thought
         results.each do |result|
             all_user_ids += "#{result["follow_target"]}"
             all_user_ids += ","
-            all_user_ids = all_user_ids.chomp()
+            all_user_ids = all_user_ids.slice(0..-2)
+            p all_user_ids
+            all_user_ids += ")"
         end
         results = exec_sql("select * from posts where user_id in #{all_user_ids}")
         return results
+    end
+
+    def self.get_all_thoughts_and_votes_by_following(user_id)
+
+        results = self.get_all_thoughts_by_following(user_id)
+        processed_results = results.each do |result|
+            votes = Vote.get_some_votes_by_thought_id(result["id"])
+            result["likes"] = votes[0]
+            result["dislikes"] = votes[1]
+            processed_results.push(result)
+        end
+        return processed_results
     end
 
     def self.get_single_thought_by_id(id)

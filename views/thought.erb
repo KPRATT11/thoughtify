@@ -19,6 +19,20 @@
         <% user = User.get_single_user_by_id(comment["user_id"]) %>
         <a href="/user/<%= user["id"] %>"><p><%= user["first_name"]%> <%= user["last_name"]%></p></a>
         <p><%= comment["content"]%></p>
+        
+            <% if Comment.user_owns_comment(comment["id"], current_user_id)%>
+                <div class="control-buttons">
+                    <form action="/comment/<%= comment["id"] %>" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <button>delete</button>
+                    </form>
+
+                    <form action="/edit-comment/<%= thought["id"] %>" method="get">
+                        <button>edit</button>
+                    </form>
+                </div>
+            <% end %>
+
         <% if !Vote.get_has_user_voted_by_userId(current_user_id(), comment["id"], "comment", "like") %> 
             <form action="/vote/like/<%= comment["id"] %>" method="post">
                 <input type="hidden" name="target" value="comment">
