@@ -31,11 +31,11 @@ module Follower
     end
 
     def self.get_all_followers_by_userId(user_id)
-        exec_sql("SELECT * FROM followers WHERE follow_target = #{user_id}")
+        exec_sql("SELECT * FROM following WHERE follow_target = #{user_id}")
     end
 
     def self.delete_follows_by_user_id(user_id)
-        exec_sql("DELETE FROM followers WHERE follower = #{user_id}")
+        exec_sql("DELETE FROM following WHERE follower = #{user_id}")
         exec_sql("DELETE FROM  WHERE follow_target = #{user_id}")
         return true
     end

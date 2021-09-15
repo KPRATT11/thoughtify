@@ -1,0 +1,5 @@
+<form action="/user_edit_bio/<%= user["id"] %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <textarea name="bio" cols="30" rows="10"><%= user["bio"].strip %></textarea>
+    <button>Submit</button>
+</form>

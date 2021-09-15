@@ -24,17 +24,17 @@
 </div>
 
 <div class="tabs">
+    <form action="/user_followers/<%= user["id"] %>">
+        <button>followers</button>
+    </form>
     <form action="/user/<%= user["id"] %>">
         <button>thoughts</button>
     </form>
-    <form action="/user_following/<%= user["id"] %>">
-        <button>following</button>
-    </form>
 </div>
 
-<div class="followers-container">
-    <% followers.each do |follower_id| %>
-        <% user = User.get_single_user_by_id(follower_id["follower"]) %>
+<div class="following-container">
+    <% following.each do |following_id| %>
+        <% user = User.get_single_user_by_id(following_id["follow_target"]) %>
         <a href="/user/<%= user["id"] %>"><h3><%= user["first_name"]%> <%= user["last_name"]%></h3></a>
     <% end %>
 </div>

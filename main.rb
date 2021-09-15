@@ -149,7 +149,9 @@ end
 # Handle Users
 get "/search_user" do
     search_query = params[:search_q]
-    results = User.get_some_users_by_search_query(search_query)
+    if params[:search_q] != nil
+        results = User.get_some_users_by_search_query(search_query)
+    end
     erb(:search_user_results, locals: {results: results})
 end
 
@@ -180,6 +182,29 @@ get "/user/:id" do
     erb(:user_page, locals: { user: user, thoughts: thoughts})
 end
 
+get "/user_followers/:id" do
+    user= User.get_single_user_by_id(params[:id])
+    followers = Follower.get_all_followers_by_userId(params[:id])
+    erb(:user_page_followers, locals: { user: user, followers: followers})
+end
+
+get "/user_following/:id" do
+    user= User.get_single_user_by_id(params[:id])
+    following = Follower.get_all_following_by_userId(params[:id])
+    erb(:user_page_following, locals: { user: user, following: following})
+end
+
+get "/user_edit_bio/:id" do
+    user = User.get_single_user_by_id(params[:id])
+    erb(:user_edit_bio, locals: { user: user})
+end
+
+patch "/user_edit_bio/:id" do
+    user = User.get_single_user_by_id(params[:id])
+    User.patch_user_bio_by_id(params[:id], params[:bio])
+    redirect "/user/#{params[:id]}"
+end
+
 post "/follow" do
     redirect back unless logged_in?
     Follower.post_follow(current_user_id, params[:target_id])
@@ -191,15 +216,6 @@ delete "/follow" do
     Follower.delete_follow(current_user_id, params[:target_id])
     redirect back
 end
-
-get "/user/:id/following" do
-    "display following for user"
-end
-
-get "/user/:id/followers" do
-    "display followers"
-end
-
 
 #this is last becuase of the matching I may rewrite the routes for this but tbh right now there is so much to fo oh my god there is so much to do
 get "/:page" do

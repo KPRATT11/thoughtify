@@ -1,5 +1,14 @@
+<form action="/search_user">
+    <input type="text" name="search_q">
+    <button>Search</button>
+</form>
+
 <div>
-    <% results.each do |user| %>
-        <h2><%= user["first_name"]%> <%= user["last_name"]%></h2>
-    <% end %>
+    <% if results == nil %>
+        Search for a user
+    <%else%>
+        <% results.each do |user| %>
+            <a href="/user/<%= user["id"] %>"><h2><%= user["first_name"]%> <%= user["last_name"]%></h2></a>
+        <% end %>
+    <%end%>
 </div>

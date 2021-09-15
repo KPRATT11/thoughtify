@@ -77,7 +77,7 @@ module User
         return true
     end
 
-    def self.patch_user_bio_by_id(new_bio, id)
+    def self.patch_user_bio_by_id(id, new_bio)
         new_bio = Sanitize.escape_quote(new_bio)
         exec_sql("UPDATE users SET bio = '#{new_bio}' WHERE id = #{id};")
         return true

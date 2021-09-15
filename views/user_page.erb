@@ -1,5 +1,5 @@
 <h1><%= user["first_name"] %> <%= user["last_name"] %></h1>
-<% if logged_in? %>
+<% if logged_in? and is_current_user?(user["id"])%>
     <% if Follower.is_following?(current_user_id, user["id"] )%>
         <form action="/follow" method="post">
             <input type="hidden" name="_method" value="delete">
@@ -13,9 +13,17 @@
         </form>
     <%end%>
 <%end%>
-<h3>bio</h3>
+<div class="bio">
+    <h3><%= user['bio']%></h3>
+    <% if is_current_user?(user["id"])%>
+        <form action="/user_edit_bio/<%= user['id']%>">
+            <button>Edit bio</button>
+        </form>
+    <% end %>
+</div>
+
 <div class="tabs">
-    <form action="">
+    <form action="/user_followers/<%= user["id"] %>">
         <button>followers</button>
     </form>
     <form action="">
