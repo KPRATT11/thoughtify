@@ -22,13 +22,18 @@ get "/" do
     redirect "/0"
 end
 
+get "/login" do
+    erb(:login)
+end
+
 # Thoughts
 get "/create-thought" do
     erb(:create_thought)
 end
 
 get "/edit-thought/:id" do
-    erb(:edit_thought)
+    thought = Thought.get_single_thought_by_id(params[:id])
+    erb(:edit_thought, locals: {thought: thought})
 end
 
 get "/:page" do
@@ -49,6 +54,7 @@ get "/following-thoughts/:id" do
 end
 
 post "/thought" do
+    redirect back unless logged_in?
     title = params[:title]
     content = params[:content]
 
@@ -66,12 +72,22 @@ delete "/thought/:id" do
 end
 
 put "/thought/:id" do
-    "update a thought"
+    redirect back unless logged_in?
+    title = params[:title]
+    content = params[:content]
+
+    if title.length > 0 and content.length > 0
+        Thought.put_thought_by_id(params[:id], current_user_id, title, content)
+        redirect "/"
+    end
+    redirect back
 end
 
 # Comments -- there shouldnt be a need to display comments on there own
 post "/comment/:id" do
-    "add comment to post and redirect back to post"
+    redirect back unless logged_in?
+    Comment.post_comment(params[:content], params[:id], current_user_id)
+    redirect back
 end
 
 delete "/comment/:id" do
@@ -110,6 +126,7 @@ end
 post "/session" do
     if !logged_in?
         user = User.validate_user(params[:email], params[:password])
+        p user
         if user
             session[:user_id] = user["id"]
             redirect "/"
@@ -127,9 +144,7 @@ end
 
 
 # Handle Users
-get "/login" do
-    erb(:user_test)
-end
+
 
 get "/users" do
     "display Users"

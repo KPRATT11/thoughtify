@@ -6,10 +6,17 @@
     <p>-----------</p>
 </div>
 
+<div class="create-comment">
+    <form action="/comment/<%= thought["id"] %>" method="post">
+        <input name="content" type="text">
+        <button>comment</button>
+    </form>
+</div>
+
 <div class="comments-container">
     <% comments.each do |comment| %>
         <% votes = Vote.get_some_votes_by_comment_id(comment["id"])%>
-        <% user = User.get_single_user_by_id(comment["id"]) %>
+        <% user = User.get_single_user_by_id(comment["user_id"]) %>
         <a href="/user/<%= user["id"] %>"><p><%= user["first_name"]%> <%= user["last_name"]%></p></a>
         <p><%= comment["content"]%></p>
         <% if !Vote.get_has_user_voted_by_userId(current_user_id(), comment["id"], "comment", "like") %> 

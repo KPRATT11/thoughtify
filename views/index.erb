@@ -6,13 +6,18 @@
             <% user = User.get_single_user_by_id(thought["user_id"])%>
             <% votes = Vote.get_some_votes_by_thought_id(thought["id"])%>
             <a href="/thought/<%= thought["id"] %>"><h2><%= thought["title"] %></h2></a>
-            <form action="/thought/<%= thought["id"] %>" method="post">
-                <input type="hidden" name="_method" value="delete">
-                <button>delete</button>
-            </form>
-            <form action="/edit-thought/<%= thought["id"] %>" method="get">
-                <button>edit</button>
-            </form>
+            <% if Thought.user_owns_thought(thought["id"], current_user_id)%>
+                <div class="control-buttons">
+                    <form action="/thought/<%= thought["id"] %>" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <button>delete</button>
+                    </form>
+
+                    <form action="/edit-thought/<%= thought["id"] %>" method="get">
+                        <button>edit</button>
+                    </form>
+                </div>
+            <% end %>
             <a href="/user/<%= user["id"] %>"><p><%= user["first_name"]%> <%= user["last_name"]%></p></a>
             <a href="/thought/<%= thought["id"] %>"><h4> <%= thought["content"]%> </h4></a> 
 

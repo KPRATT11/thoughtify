@@ -7,7 +7,20 @@
     <title>Share App</title>
 </head>
 <body>
-    <p><%= session[:user_id] %></p>
+    <% if logged_in? %>
+        <form action="/session" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button>logout</button>
+        </form>
+    <% else %>
+        <form action="/login">
+            <button>login</button>
+        </form>
+    <% end %>
+    <% if logged_in? %>
+        <p><%= current_user_id %></p>
+    <% end %>
+    <br>
     <%= yield %>
 </body>
 </html>

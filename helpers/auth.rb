@@ -1,5 +1,5 @@
 require 'sinatra/base'
-$testing = true
+$testing = false
 
 def logged_in?
     return true if $testing

@@ -10,9 +10,11 @@ require_relative 'comment.rb'
 module Thought
     def self.user_owns_thought(thought_id, user_id)
         thought = self.get_single_thought_by_id(thought_id)
-        if thought["user_id"].to_i == user_id
+        if thought["user_id"].to_i == user_id.to_i
+            p 'owns'
             return true
         end
+        p 'nah'
         return false
     end
 
@@ -71,11 +73,11 @@ module Thought
         return false
     end
 
-    def self.put_thought_by_id(id, thought_title, thought_content)
+    def self.put_thought_by_id(id, user_id, thought_title, thought_content)
         thought_title = Sanitize.escape_quote(thought_title)
         thought_conent = Sanitize.escape_quote(thought_content)
 
-        if self.user_owns_thought(id, current_user_id)
+        if self.user_owns_thought(id, user_id)
             exec_sql("UPDATE posts SET title = '#{thought_title}', content = '#{thought_content}' WHERE id = #{id}")
             return true
         end
