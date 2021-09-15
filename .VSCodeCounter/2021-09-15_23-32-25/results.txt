@@ -1,0 +1,64 @@
+Date : 2021-09-15 23:32:25
+Directory : /home/keeganpratt/sei/projects/02-crud
+Total : 30 files,  988 codes, 20 comments, 143 blanks, all 1151 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| Ruby       |         14 |        565 |         19 |        100 |        684 |
+| erb        |         13 |        361 |          0 |         34 |        395 |
+| SQL        |          1 |         43 |          0 |          7 |         50 |
+| JavaScript |          2 |         19 |          1 |          2 |         22 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                            | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                               |         30 |        988 |         20 |        143 |      1,151 |
+| db                                                                              |          2 |         51 |          0 |          8 |         59 |
+| helpers                                                                         |          3 |         22 |          0 |          3 |         25 |
+| models                                                                          |          6 |        334 |          6 |         48 |        388 |
+| public                                                                          |          2 |         19 |          1 |          2 |         22 |
+| public/scripts                                                                  |          2 |         19 |          1 |          2 |         22 |
+| tests                                                                           |          1 |          0 |          0 |          1 |          1 |
+| views                                                                           |         13 |        361 |          0 |         34 |        395 |
++---------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                        | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| /home/keeganpratt/sei/projects/02-crud/db/db_connectors.rb                      | Ruby       |          8 |          0 |          1 |          9 |
+| /home/keeganpratt/sei/projects/02-crud/db/schema.sql                            | SQL        |         43 |          0 |          7 |         50 |
+| /home/keeganpratt/sei/projects/02-crud/db_console.rb                            | Ruby       |          8 |          0 |          2 |         10 |
+| /home/keeganpratt/sei/projects/02-crud/helpers/auth.rb                          | Ruby       |         16 |          0 |          3 |         19 |
+| /home/keeganpratt/sei/projects/02-crud/helpers/globals.rb                       | Ruby       |          1 |          0 |          0 |          1 |
+| /home/keeganpratt/sei/projects/02-crud/helpers/sanitize.rb                      | Ruby       |          5 |          0 |          0 |          5 |
+| /home/keeganpratt/sei/projects/02-crud/main.rb                                  | Ruby       |        193 |          9 |         42 |        244 |
+| /home/keeganpratt/sei/projects/02-crud/models/comment.rb                        | Ruby       |         44 |          2 |          7 |         53 |
+| /home/keeganpratt/sei/projects/02-crud/models/follower.rb                       | Ruby       |         36 |          0 |          6 |         42 |
+| /home/keeganpratt/sei/projects/02-crud/models/thought.rb                        | Ruby       |        113 |          1 |         14 |        128 |
+| /home/keeganpratt/sei/projects/02-crud/models/topic.rb                          | Ruby       |         14 |          0 |          2 |         16 |
+| /home/keeganpratt/sei/projects/02-crud/models/user.rb                           | Ruby       |         75 |          1 |         11 |         87 |
+| /home/keeganpratt/sei/projects/02-crud/models/vote.rb                           | Ruby       |         52 |          2 |          8 |         62 |
+| /home/keeganpratt/sei/projects/02-crud/public/scripts/commentScrollPersistor.js | JavaScript |          9 |          0 |          1 |         10 |
+| /home/keeganpratt/sei/projects/02-crud/public/scripts/scrollPersistor.js        | JavaScript |         10 |          1 |          1 |         12 |
+| /home/keeganpratt/sei/projects/02-crud/seed.rb                                  | Ruby       |          0 |          4 |          3 |          7 |
+| /home/keeganpratt/sei/projects/02-crud/tests/db_tests.rb                        | Ruby       |          0 |          0 |          1 |          1 |
+| /home/keeganpratt/sei/projects/02-crud/views/create_thought.erb                 | erb        |          5 |          0 |          0 |          5 |
+| /home/keeganpratt/sei/projects/02-crud/views/create_user.erb                    | erb        |         11 |          0 |          4 |         15 |
+| /home/keeganpratt/sei/projects/02-crud/views/edit_comment.erb                   | erb        |          5 |          0 |          0 |          5 |
+| /home/keeganpratt/sei/projects/02-crud/views/edit_thought.erb                   | erb        |          6 |          0 |          0 |          6 |
+| /home/keeganpratt/sei/projects/02-crud/views/index.erb                          | erb        |         68 |          0 |          8 |         76 |
+| /home/keeganpratt/sei/projects/02-crud/views/layout.erb                         | erb        |         29 |          0 |          0 |         29 |
+| /home/keeganpratt/sei/projects/02-crud/views/login.erb                          | erb        |          7 |          0 |          2 |          9 |
+| /home/keeganpratt/sei/projects/02-crud/views/search_user_results.erb            | erb        |         13 |          0 |          1 |         14 |
+| /home/keeganpratt/sei/projects/02-crud/views/thought.erb                        | erb        |         58 |          0 |          7 |         65 |
+| /home/keeganpratt/sei/projects/02-crud/views/user_edit_bio.erb                  | erb        |          5 |          0 |          0 |          5 |
+| /home/keeganpratt/sei/projects/02-crud/views/user_page.erb                      | erb        |         80 |          0 |          6 |         86 |
+| /home/keeganpratt/sei/projects/02-crud/views/user_page_followers.erb            | erb        |         37 |          0 |          3 |         40 |
+| /home/keeganpratt/sei/projects/02-crud/views/user_page_following.erb            | erb        |         37 |          0 |          3 |         40 |
+| Total                                                                           |            |        988 |         20 |        143 |      1,151 |
++---------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

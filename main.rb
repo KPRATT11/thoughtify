@@ -223,6 +223,7 @@ delete "/follow" do
     redirect back
 end
 
+#why why did i chose to do so much it is 11:30pm i have been at this since 7 in the morning this is pain existence is pain
 get "/followed_thoughts/:page" do
     followed_thoughts = Thought.get_all_thoughts_and_votes_by_following(current_user_id)
     erb(:index, locals: {
