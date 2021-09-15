@@ -2,6 +2,7 @@ require 'sinatra/base'
 $testing = true
 
 def logged_in?
+    return true if $testing
     if session[:user_id]
         return true
     else

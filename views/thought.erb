@@ -1,0 +1,44 @@
+<div>
+    <% user = User.get_single_user_by_id(thought["user_id"]) %>
+    <a href="/thought/<%= thought["id"] %>"><h2><%= thought["title"] %></h2></a>
+    <a href="/user/<%= user["id"] %>"><p><%= user["first_name"]%> <%= user["last_name"]%></p></a>
+    <a href="/thought/<%= thought["id"] %>"><h4> <%= thought["content"]%> </h4></a> 
+    <p>-----------</p>
+</div>
+
+<div class="comments-container">
+    <% comments.each do |comment| %>
+        <% votes = Vote.get_some_votes_by_comment_id(comment["id"])%>
+        <% user = User.get_single_user_by_id(comment["id"]) %>
+        <a href="/user/<%= user["id"] %>"><p><%= user["first_name"]%> <%= user["last_name"]%></p></a>
+        <p><%= comment["content"]%></p>
+        <% if !Vote.get_has_user_voted_by_userId(current_user_id(), comment["id"], "comment", "like") %> 
+            <form action="/vote/like/<%= comment["id"] %>" method="post">
+                <input type="hidden" name="target" value="comment">
+                <button >like</button>
+            </form>  
+        <% else %>
+            <form action="/vote/<%= comment["id"] %>" method="post">
+                <input type="hidden" name="target" value="comment">
+                <input type="hidden" name="_method" value="delete">
+                <button >unlike</button>
+            </form> 
+        <% end %>
+
+        <p>likes: <%= votes[0].length %></p> 
+        <p>dislikes: <%= votes[1].length %></p>
+
+        <% if !Vote.get_has_user_voted_by_userId(current_user_id(), comment["id"], "comment", "dislike") %> 
+            <form action="/vote/dislike/<%= comment["id"] %>" method="post">
+                <input type="hidden" name="target" value="comment">
+                <button >dislike</button>
+            </form>  
+        <% else %>
+            <form action="/vote/<%= comment["id"] %>" method="post">
+                <input type="hidden" name="target" value="comment">
+                <input type="hidden" name="_method" value="delete">
+                <button >undislike</button>
+            </form> 
+        <% end %>
+    <% end %>
+</div>

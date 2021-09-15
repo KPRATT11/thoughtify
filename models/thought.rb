@@ -18,7 +18,7 @@ module Thought
 
     def self.get_all_thoughts(page_num)
         offset = GLB_PAGE_SIZE * page_num
-        results = exec_sql("SELECT * FROM posts LIMIT #{GLB_PAGE_SIZE} OFFSET #{offset}")
+        results = exec_sql("SELECT * FROM posts ORDER BY post_date DESC LIMIT #{GLB_PAGE_SIZE} OFFSET #{offset}")
     end
 
     def self.get_all_thoughts_and_votes(page_num)

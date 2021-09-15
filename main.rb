@@ -23,6 +23,14 @@ get "/" do
 end
 
 # Thoughts
+get "/create-thought" do
+    erb(:create_thought)
+end
+
+get "/edit-thought/:id" do
+    erb(:edit_thought)
+end
+
 get "/:page" do
     all_thoughts = Thought.get_all_thoughts_and_votes(params[:page].to_i)
     erb(:index, locals: {
@@ -31,19 +39,30 @@ get "/:page" do
 end
 
 get "/thought/:id" do
-    "display single thought and comments"
+    comments = Comment.get_some_comments_by_thought(params[:id])
+    thought = Thought.get_single_thought_by_id(params[:id])
+    erb(:thought, locals: {comments: comments, thought: thought})
 end
 
 get "/following-thoughts/:id" do
     "display thoughts of following"
 end
 
-post "/thought/:id" do
-    "create a thought"
+post "/thought" do
+    title = params[:title]
+    content = params[:content]
+
+    if title.length > 0 and content.length > 0
+        Thought.post_thought(current_user_id, title, content)
+        redirect "/"
+    end
+    redirect back
 end
 
 delete "/thought/:id" do
-    "delete a thought"
+    redirect back unless logged_in?
+    Thought.delete_thought_by_id(params[:id])
+    redirect "/"
 end
 
 put "/thought/:id" do
@@ -65,11 +84,17 @@ end
 
 # vote 
 post "/vote/:type/:target_id" do
-    "vote on target and return to page of target - probs just redirect back"
+    redirect back unless logged_in?
+    p "working"
+    Vote.delete_votes_on_target_by_user_id(current_user_id, params[:target_id], params[:target])
+    Vote.post_vote_for_target(current_user_id, params[:type], params[:target_id], params[:target])
+    redirect back
 end
 
-delete "/vote/:type/:target_id" do
-    "delete vote and return to page of target"
+delete "/vote/:target_id" do
+    redirect back unless logged_in?
+    Vote.delete_votes_on_target_by_user_id(current_user_id, params[:target_id], params[:target])
+    redirect back
 end
 
 # Following
