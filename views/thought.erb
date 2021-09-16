@@ -86,9 +86,19 @@
 
 <div class="create-comment">
     <form action="/comment/<%= thought["id"] %>" method="post">
-        <textarea class="input input-text-area-comment input-light" name="content" placeholder="Comment..." required cols="30" rows="10"></textarea>
+        <textarea 
+            class="input input-text-area-comment input-light" 
+            name="content" placeholder="Comment..." 
+            required 
+            cols="40" 
+            rows="10"
+            maxlength="180"
+            ></textarea>
+        <div class="character-counter character-counter-comment"> <p class="character-count">0</p> <p class="bold">/</p> <p>180</p> </div>
         <button class="action-button"><img src="/images/icons/comment.svg" class="action action-comment"></button>
+        
     </form>
+    
 </div>
 
 <div class="comments-container">
@@ -169,4 +179,5 @@
     <% end %>
 </div>
 
-<script src="/scripts/commentScrollPersistor.js"></script>>
+<script src="/scripts/characterCounter.js"></script>
+<script src="/scripts/commentScrollPersistor.js"></script>
