@@ -95,6 +95,7 @@ a{
     text-align: center;
 }
 .head-user{
+    margin-top: 10px;
     font-size: 24px;
     font-weight: bold;
     color: white;
@@ -250,6 +251,9 @@ progress[value]::-moz-progress-bar{
     font-size: 22px;
     padding-left: 18px;
 }
+.input-text-area{
+    height: 235px;
+}
 .input:focus{
     outline: none;
 }
@@ -266,6 +270,12 @@ progress[value]::-moz-progress-bar{
 }
 .input-dark:focus{
     background: $color-input-dark-focus;
+}
+
+.input-block{
+    margin: auto;
+    display: block;
+    margin-bottom: 12px;
 }
 
 .large-button{
@@ -380,4 +390,25 @@ progress[value]::-moz-progress-bar{
 }
 .edit-bio:hover{
     color: rgb(98, 102, 112);
+}
+.user-result-card{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 25% !important;
+}
+.user-result-profile-pic{
+    width: 80px;
+}
+.user-result-name{
+    line-height:40px;
+}
+
+.user-search{
+    margin-top: 40px;
+}
+.user-search-icon{
+    top: 40px;
+}
+.logout-icon{
+    left: -60px;
 }

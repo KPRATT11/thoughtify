@@ -13,7 +13,7 @@
             <% if logged_in? %>
                 <form action="/session" method="post">
                     <input type="hidden" name="_method" value="delete">
-                    <button>logout</button>
+                    <button class="action-button"><img class="action logout-icon" src="/images/icons/logout.svg" alt=""></button>
                 </form>
             <% else %>
                 <div class="login-form">

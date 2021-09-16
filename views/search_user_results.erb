@@ -1,14 +1,17 @@
 <form action="/search_user">
-    <input class="input input-dark user-search" type="text" name="search_q">
-    <button>Search</button>
+    <input class="input input-light user-search" type="text" name="search_q">
+    <button class="action-button"><img class="action user-search-icon" src="/images/icons/search.svg" alt=""></button>
 </form>
 
 <div>
     <% if results == nil %>
-        Search for a user
+        <img src="/images/graphics/search-background.svg" alt="">
     <%else%>
         <% results.each do |user| %>
-            <a href="/user/<%= user["id"] %>"><h2><%= user["first_name"]%> <%= user["last_name"]%></h2></a>
+            <div class="card user-result-card">
+                <img class="user-result-profile-pic" src="https://avatars.dicebear.com/api/bottts/<%= user["id"] %>.svg" alt="">
+                <a class="user-result-name" href="/user/<%= user["id"] %>"><h2><%= user["first_name"]%> <%= user["last_name"]%></h2></a>
+            </div>
         <% end %>
     <%end%>
 </div>
