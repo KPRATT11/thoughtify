@@ -98,7 +98,7 @@ end
 delete "/comment/:id" do
     redirect back unless logged_in?
     Comment.delete_comment_by_id(params[:id], current_user_id)
-    redirect "/"
+    redirect "/thought/#{params[:thought_id]}"
 end
 
 put "/comment/:id" do

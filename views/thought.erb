@@ -104,6 +104,7 @@
                 <div class="action-icons action-icons-comment">
                     <form action="/comment/<%= comment["id"] %>" method="post">
                         <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="thought_id" value="<%= thought["id"] %>" />
                         <button class="action-button"><img src="/images/icons/trash.svg" class="action action-del"></button>
                         <div class="tooltip tooltip-del">
                             Delete
