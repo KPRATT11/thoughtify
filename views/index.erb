@@ -1,18 +1,21 @@
 <%if logged_in?%>
-    <form action="/followed_thoughts/0">
-        <button
-            <%if displaying == "following"%>
-                disabled="true"
-            <% end %>
-        >Following</button>
-    </form>
-    <form action="/0>">
-        <button
-            <%if displaying == "all"%>
-                disabled="true"
-            <% end %>
-        >Main Page</button>
-    </form>
+    <div class="content-tabs-container">
+        <form action="/followed_thoughts/0">
+            <button class="content-tab"
+                <%if displaying == "following"%>
+                    disabled="true"
+                <% end %>
+            >Following</button>
+        </form>
+        <form action="/0>">
+            <button class="content-tab"
+                <%if displaying == "all"%>
+                    disabled="true"
+                <% end %>
+            >Main Page</button>
+        </form>
+    </div>
+    
 <% end %>
 
 <div class="thoughts-container">

@@ -1,34 +1,42 @@
-<h1><%= user["first_name"] %> <%= user["last_name"] %></h1>
-<% if logged_in? %>
-    <% if Follower.is_following?(current_user_id, user["id"] )%>
-        <form action="/follow" method="post">
-            <input type="hidden" name="_method" value="delete">
-            <input type="hidden" name="target_id" value=<%= user["id"] %>>
-            <button>unfollow</button>
-        </form>
-    <%else%>
-        <form action="/follow" method="post">
-            <input type="hidden" name="target_id" value=<%= user["id"] %>>
-            <button>follow</button>
-        </form>
-    <%end%>
-<%end%>
+<div class="user-details">
+    <img class="user-details-profile-pic" src="https://avatars.dicebear.com/api/bottts/<%= user["id"] %>.svg" alt="">
+    <h1 class="user-details-name"><%= user["first_name"] %> <%= user["last_name"] %></h1>
 
-<div class="bio">
-    <h3><%= user['bio']%></h3>
-    <% if is_current_user?(user["id"])%>
-        <form action="/user_edit_bio/<%= user['id']%>">
-            <button>Edit bio</button>
-        </form>
-    <% end %>
+    <% if logged_in? and !is_current_user?(user["id"])%>
+        <% if Follower.is_following?(current_user_id, user["id"] )%>
+            <form action="/follow" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <input type="hidden" name="target_id" value=<%= user["id"] %>>
+                <button>unfollow</button>
+            </form>
+        <%else%>
+            <form action="/follow" method="post">
+                <input type="hidden" name="target_id" value=<%= user["id"] %>>
+                <button>follow</button>
+            </form>
+        <%end%>
+    <%end%>
+    <div class="bio">
+        <h3 class="user-details-bio"><%= user['bio']%></h3>
+        <% if is_current_user?(user["id"])%>
+            <form  action="/user_edit_bio/<%= user['id']%>">
+                <button class="edit-bio">Edit bio</button>
+            </form>
+        <% end %>
+    </div>
 </div>
 
-<div class="tabs">
-    <form action="/user_followers/<%= user["id"] %>">
-        <button>followers</button>
-    </form>
+
+
+<div class="user-tabs">
     <form action="/user/<%= user["id"] %>">
-        <button>thoughts</button>
+        <button class="content-tab">thoughts</button>
+    </form>
+    <form action="/user_followers/<%= user["id"] %>">
+        <button class="content-tab">followers</button>
+    </form>
+    <form action="/user_following/<%= user["id"] %>">
+        <button disabled="true" class="content-tab">following</button>
     </form>
 </div>
 

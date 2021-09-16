@@ -88,8 +88,8 @@
         <div class="card card-narrow">
             <% votes = Vote.get_some_votes_by_comment_id(comment["id"])%>
             <% user = User.get_single_user_by_id(comment["user_id"]) %>
-            <a href="/user/<%= user["id"] %>"><p><%= user["first_name"]%> <%= user["last_name"]%></p></a>
-            <p class="card-content"><%= comment["content"]%></p>
+            <a href="/user/<%= user["id"] %>"><p class="card-user"><%= user["first_name"]%> <%= user["last_name"]%></p></a>
+            <p class="card-content card-content-comment"><%= comment["content"]%></p>
             
 
             <% if Comment.user_owns_comment(comment["id"], current_user_id)%>
@@ -131,15 +131,15 @@
 
                 <progress class="like-ratio" value="<%= votes[0].length %>" max="<%= votes[0].length + votes[1].length %>"></progress>
 
-                <% if !Vote.get_has_user_voted_by_userId(current_user_id(), thought["id"], "comment", "dislike") %> 
-                    <form action="/vote/dislike/<%= thought["id"] %>" method="post">
+                <% if !Vote.get_has_user_voted_by_userId(current_user_id(), comment["id"], "comment", "dislike") %> 
+                    <form action="/vote/dislike/<%= comment["id"] %>" method="post">
                         <input type="hidden" name="target" value="comment">
                         <button class="vote-button-button">
                             <img src="/images/icons/thumbs-down.svg" class="vote-button dislike">
                         </button>
                     </form>  
                 <% else %>
-                    <form action="/vote/<%= thought["id"] %>" method="post">
+                    <form action="/vote/<%= comment["id"] %>" method="post">
                         <input type="hidden" name="target" value="comment">
                         <input type="hidden" name="_method" value="delete">
                         <button class="vote-button-button">
@@ -151,3 +151,5 @@
         </div>
     <% end %>
 </div>
+
+<script src="/scripts/commentScrollPersistor.js"></script>>

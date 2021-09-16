@@ -1,4 +1,5 @@
 window.addEventListener('load', (event) => {
+    console.log('yeeet')
     //set the comments session storage to 0 because we have left the comments page
     sessionStorage.setItem('commentSP', 0)
     if (sessionStorage.getItem('mainSP') == null){
