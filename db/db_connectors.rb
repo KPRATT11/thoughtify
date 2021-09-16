@@ -1,4 +1,4 @@
-require 'pg'
+require 'pg' if development?
 
 def exec_sql(command)
     p command
