@@ -3,7 +3,6 @@ require 'bcrypt'
 require_relative '../db/db_connectors.rb'
 require_relative '../helpers/sanitize.rb'
 require_relative '../helpers/auth.rb'
-require 'pry'
 
 module User
     def self.digest_password(password)
