@@ -8,23 +8,40 @@
     <title>Share App</title>
 </head>
 <body>
-    <% if logged_in? %>
-        <form action="/session" method="post">
-            <input type="hidden" name="_method" value="delete">
-            <button>logout</button>
-        </form>
-    <% else %>
-        <form action="/login">
-            <button>login</button>
-        </form>
-        <form action="/signup">
-            <button>signup</button>
-        </form>
-    <% end %>
-    <% if logged_in? %>
-        <p><%= current_user_id %></p>
-    <% end %>
-    <br>
-    <%= yield %>
+    <div class="head">
+        <div class="head-user-tab">
+            <% if logged_in? %>
+                <form action="/session" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <button>logout</button>
+                </form>
+            <% else %>
+                <div class="login-form">
+                    <form action="/login">
+                        <button>login</button>
+                    </form>
+                    <form action="/signup">
+                        <button>signup</button>
+                    </form>
+                </div>
+            <% end %>
+            <% if logged_in? %>
+                <% user = User.get_single_user_by_id(current_user_id)%>
+                <p class="head-user"><%= user["first_name"] %> <%= user["second_name"] %></p>
+            <% end %>
+        </div>
+
+    <img class="head-logo" src="/images/branding/Logo.svg" alt="">
+
+    </div>
+
+    <div class="main-content">
+            <a class="main-action" href="/create-thought">post a tought</a>
+            <div class="thoughts-container">
+                <%= yield %>
+            </div>
+            
+            <a class="main-action" href="/search_user">search user</a>
+    </div>
 </body>
 </html>

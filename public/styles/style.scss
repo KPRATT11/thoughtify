@@ -11,6 +11,7 @@ $box-shadow: 4px 8px 8px 4px rgba(0,0,0,0.25);
 $box-shadow-hover: 6px 11px 10px 4px rgba(0,0,0,0.25);
 
 body{
+    margin: 0;
     font-family: 'Roboto', sans-serif;
     height: 900px;
     background: linear-gradient(120deg, rgb(20, 105, 114) 0%, rgb(27, 61, 95) 100%);
@@ -23,10 +24,65 @@ a{
     text-decoration: none;
 }
 
+.main-content{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+.main-action{
+    border-radius: 20px;
+    transition: all 0.3s;
+    font-size: 24px;
+    box-shadow: $box-shadow;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 0.5em;
+    height: 60px;
+    margin: 65px;
+    margin-top: 30px;
+    padding: 10px;
+    background-color: $color-card;
+    display: block;
+}
+.main-action:hover{
+    background-color: rgba(255,255,255, 0);
+    color: $color-card;
+    box-shadow: none;
+}
+
+.thoughts-container{
+    text-align: center;
+}
+
+.head{
+    justify-content: center;
+    margin: 0;
+    height: 150px;
+    background-color: $color-card;
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    text-align: center;
+}
+.head-user{
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+.head-user-tab{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.head-logo{
+    display: block;
+    margin: auto;
+    z-index: 1;
+    width: 250px;
+}
 .card {
     position: relative;
     color: white;
-    margin: 50px;
+    margin: auto;
+    margin-top: 30px;
     background-color: $color-card;
     width: 845px;
     padding: 15px 35px;
