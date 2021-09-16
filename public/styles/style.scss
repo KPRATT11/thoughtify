@@ -412,3 +412,12 @@ progress[value]::-moz-progress-bar{
 .logout-icon{
     left: -60px;
 }
+.signup-button{
+    cursor: pointer;
+    appearance: none;
+    border: none;
+    background-color: rgba(255,255,255,0);
+    margin-top: 60px;
+    font-size: 28px;
+    color: white;
+}

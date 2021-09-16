@@ -1,5 +1,5 @@
 require 'sinatra'           
-require 'sinatra/reloader'
+require 'sinatra/reloader' if development?
 require_relative 'models/thought.rb'
 require_relative 'models/comment.rb'
 require_relative 'models/follower.rb'
@@ -8,7 +8,7 @@ require_relative 'models/user.rb'
 require_relative 'models/vote.rb'
 require_relative 'helpers/auth.rb'
 
-$TESTING = true
+$TESTING = false
 
 #CONSTANTS
 RD_POST = 307

@@ -1,8 +1,20 @@
 <div class="card card-narrow">
     <form action="/thought/<%= thought["id"]%>" method="post">
         <input type="hidden" name="_method" value="put">
-        <input class="input input-light input-block" name="title" type="text" value="<%= thought["title"] %>">
-        <textarea class="input input-light input-text-area input-block" name="content" cols="30" rows="10"><%= thought["content"] %></textarea>
+        <input 
+        class="input input-light input-block" 
+        name="title" 
+        type="text" 
+        value="<%= thought["title"] %>""
+        placeholder="Title..."
+        >
+        <textarea 
+        class="input input-light input-text-area input-block" 
+        name="content" 
+        cols="30" 
+        rows="10"
+        placeholder="Thought..."
+        ><%= thought["content"] %></textarea>
         <button class="large-button large-button-positive">Submit</button>
     </form>
 </div>
