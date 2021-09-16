@@ -8,12 +8,12 @@
             <form action="/follow" method="post">
                 <input type="hidden" name="_method" value="delete">
                 <input type="hidden" name="target_id" value=<%= user["id"] %>>
-                <button>unfollow</button>
+                <button class="follow-button">unfollow</button>
             </form>
         <%else%>
             <form action="/follow" method="post">
                 <input type="hidden" name="target_id" value=<%= user["id"] %>>
-                <button>follow</button>
+                <button class="follow-button">follow</button>
             </form>
         <%end%>
     <%end%>

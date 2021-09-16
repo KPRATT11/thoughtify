@@ -270,6 +270,10 @@ progress[value]::-moz-progress-bar {
   height: 235px;
 }
 
+.input-text-area-comment {
+  height: 105px;
+}
+
 .input:focus {
   outline: none;
 }
@@ -473,7 +477,38 @@ progress[value]::-moz-progress-bar {
   color: #f75b5b;
 }
 
+.dislikes-text-comments {
+  left: 630px;
+}
+
+.likes-text-comments {
+  left: 124px;
+}
+
 .likes {
   color: #19de68;
+}
+
+.character-counter {
+  bottom: 120px;
+  left: 510px;
+  position: absolute;
+  width: 10%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.follow-button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  background-color: white;
+  appearance: none;
+  border: none;
+  border-radius: 4px;
 }
 /*# sourceMappingURL=style.css.map */

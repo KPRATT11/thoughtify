@@ -61,7 +61,7 @@
                     <form action="/vote/like/<%= thought["id"] %>" method="post">
                         <input type="hidden" name="target" value="post">
                         <button class="vote-button-button">
-                            <img src="images/icons/thumbs-up.svg" class="vote-button like">
+                            <img src="/images/icons/thumbs-up-outline.svg" class="vote-button like">
                         </button>
                     </form>  
                 <% else %>
@@ -69,7 +69,7 @@
                         <input type="hidden" name="target" value="post">
                         <input type="hidden" name="_method" value="delete">
                         <button class="vote-button-button">
-                            <img src="images/icons/thumbs-up-outline.svg" class="vote-button like">
+                            <img src="/images/icons/thumbs-up.svg" class="vote-button like">
                         </button>
                     </form> 
                 <% end %>
@@ -83,12 +83,12 @@
                 <% end %>
 
                 <p class="vote-text dislikes"> <%= votes[1].length%> </p>
-                
+
                 <% if !Vote.get_has_user_voted_by_userId(current_user_id(), thought["id"], "post", "dislike") %> 
                     <form action="/vote/dislike/<%= thought["id"] %>" method="post">
                         <input type="hidden" name="target" value="post">
                         <button class="vote-button-button">
-                            <img src="images/icons/thumbs-down.svg" class="vote-button dislike">
+                            <img src="/images/icons/thumbs-down-outline.svg" class="vote-button dislike">
                         </button>
                     </form>  
                 <% else %>
@@ -96,7 +96,7 @@
                         <input type="hidden" name="target" value="post">
                         <input type="hidden" name="_method" value="delete">
                         <button class="vote-button-button">
-                            <img src="images/icons/thumbs-down-outline.svg" class="vote-button dislike">
+                            <img src="/images/icons/thumbs-down.svg" class="vote-button dislike">
                         </button>
                     </form> 
                 <% end %>

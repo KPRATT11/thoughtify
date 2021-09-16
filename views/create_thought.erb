@@ -2,6 +2,7 @@
     <form action="/thought" method="post">
         <input class="input input-light input-block" name="title" type="text" placeholder="Title..." required>
         <textarea 
+            maxlength="300"
             required
             class="input input-light input-text-area input-block" 
             name="content" 
@@ -9,5 +10,8 @@
             rows="10" 
             placeholder="Title..."></textarea>
         <button class="large-button large-button-positive">Submit</button>
+        <div class="character-counter"> <p class="character-count">0</p> <p class="bold">/</p> <p>300</p> </div>
     </form>
 </div>
+
+<script src="/scripts/characterCounter.js"></script>

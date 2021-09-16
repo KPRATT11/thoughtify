@@ -59,10 +59,9 @@ module Thought
         results.each do |result|
             all_user_ids += "#{result["follow_target"]}"
             all_user_ids += ","
-            all_user_ids = all_user_ids.slice(0..-2)
-            p all_user_ids
-            all_user_ids += ")"
         end
+        all_user_ids = all_user_ids.slice(0..-2)
+        all_user_ids += ")"
         results = exec_sql("select * from posts where user_id in #{all_user_ids}")
         return results
     end
@@ -70,7 +69,8 @@ module Thought
     def self.get_all_thoughts_and_votes_by_following(user_id)
 
         results = self.get_all_thoughts_by_following(user_id)
-        processed_results = results.each do |result|
+        processed_results = []
+        results.each do |result|
             votes = Vote.get_some_votes_by_thought_id(result["id"])
             result["likes"] = votes[0]
             result["dislikes"] = votes[1]
@@ -92,17 +92,14 @@ module Thought
         thought_title = Sanitize.escape_quote(thought_title)
         thought_content = Sanitize.escape_quote(thought_content)
         date = Time.now.strftime("%d/%m/%Y %H:%M")
-        if is_current_user?(user_id)
-            exec_sql("INSERT INTO posts (title, content, post_date, user_id) VALUES 
-            (
-                '#{thought_title}',
-                '#{thought_content}',
-                '#{date}',
-                '#{user_id}'
-            );")
-            return true
-        end
-        return false
+        exec_sql("INSERT INTO posts (title, content, post_date, user_id) VALUES 
+        (
+            '#{thought_title}',
+            '#{thought_content}',
+            '#{date}',
+            '#{user_id}'
+        );")
+        return true
     end
 
     def self.put_thought_by_id(id, user_id, thought_title, thought_content)
@@ -117,12 +114,9 @@ module Thought
     end
 
     def self.delete_thought_by_id(id)
-        if self.user_owns_thought(id, current_user_id)
-            exec_sql("DELETE FROM posts WHERE id = #{id}")
-            Comment.delete_comments_by_post_id(id)
-            Vote.delete_votes_by_post_id(id)
-            return true
-        end
-        return false
+        exec_sql("DELETE FROM posts WHERE id = #{id}")
+        Comment.delete_comments_by_post_id(id)
+        Vote.delete_votes_by_post_id(id)
+        return true
     end
 end

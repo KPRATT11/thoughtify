@@ -41,7 +41,7 @@
                     <form action="/vote/like/<%= thought["id"] %>" method="post">
                         <input type="hidden" name="target" value="post">
                         <button class="vote-button-button">
-                            <img src="/images/icons/thumbs-up.svg" class="vote-button like">
+                            <img src="/images/icons/thumbs-up-outline.svg" class="vote-button like">
                         </button>
                     </form>  
                 <% else %>
@@ -49,18 +49,26 @@
                         <input type="hidden" name="target" value="post">
                         <input type="hidden" name="_method" value="delete">
                         <button class="vote-button-button">
-                            <img src="/images/icons/thumbs-up-outline.svg" class="vote-button like">
+                            <img src="/images/icons/thumbs-up.svg" class="vote-button like">
                         </button>
                     </form> 
                 <% end %>
 
-                <progress class="like-ratio" value="<%= votes[0].length %>" max="<%= votes[0].length + votes[1].length %>"></progress>
+                <p class="vote-text likes"> <%= votes[0].length%> </p>
+
+                <% if votes[0].length + votes[1].length == 0 %>
+                    <progress class="like-ratio like-ratio-grey" value="<%= votes[0].length %>" max="<%= votes[0].length + votes[1].length %>"></progress>
+                <% else %>
+                    <progress class="like-ratio" value="<%= votes[0].length %>" max="<%= votes[0].length + votes[1].length %>"></progress>
+                <% end %>
+
+                <p class="vote-text dislikes"> <%= votes[1].length%> </p>
 
                 <% if !Vote.get_has_user_voted_by_userId(current_user_id(), thought["id"], "post", "dislike") %> 
                     <form action="/vote/dislike/<%= thought["id"] %>" method="post">
                         <input type="hidden" name="target" value="post">
                         <button class="vote-button-button">
-                            <img src="/images/icons/thumbs-down.svg" class="vote-button dislike">
+                            <img src="/images/icons/thumbs-down-outline.svg" class="vote-button dislike">
                         </button>
                     </form>  
                 <% else %>
@@ -68,7 +76,7 @@
                         <input type="hidden" name="target" value="post">
                         <input type="hidden" name="_method" value="delete">
                         <button class="vote-button-button">
-                            <img src="/images/icons/thumbs-down-outline.svg" class="vote-button dislike">
+                            <img src="/images/icons/thumbs-down.svg" class="vote-button dislike">
                         </button>
                     </form> 
                 <% end %>
@@ -78,7 +86,7 @@
 
 <div class="create-comment">
     <form action="/comment/<%= thought["id"] %>" method="post">
-        <input class="input input-dark" name="content" type="text" placeholder="Comment..." required>
+        <textarea class="input input-text-area-comment input-light" name="content" placeholder="Comment..." required cols="30" rows="10"></textarea>
         <button class="action-button"><img src="/images/icons/comment.svg" class="action action-comment"></button>
     </form>
 </div>
@@ -114,9 +122,9 @@
             <div class="vote-container">
                 <% if !Vote.get_has_user_voted_by_userId(current_user_id(), comment["id"], "comment", "like") %> 
                     <form action="/vote/like/<%= comment["id"] %>" method="post">
-                        <input type="hidden" name="target" value="comment">
+                        <input type="hidden" name="target" value="post">
                         <button class="vote-button-button">
-                            <img src="/images/icons/thumbs-up.svg" class="vote-button like">
+                            <img src="/images/icons/thumbs-up-outline.svg" class="vote-button like">
                         </button>
                     </form>  
                 <% else %>
@@ -124,18 +132,26 @@
                         <input type="hidden" name="target" value="comment">
                         <input type="hidden" name="_method" value="delete">
                         <button class="vote-button-button">
-                            <img src="/images/icons/thumbs-up-outline.svg" class="vote-button like">
+                            <img src="/images/icons/thumbs-up.svg" class="vote-button like">
                         </button>
                     </form> 
                 <% end %>
 
-                <progress class="like-ratio" value="<%= votes[0].length %>" max="<%= votes[0].length + votes[1].length %>"></progress>
+                <p class="vote-text likes-text-comments likes"> <%= votes[0].length%> </p>
+
+                <% if votes[0].length + votes[1].length == 0 %>
+                    <progress class="like-ratio like-ratio-grey" value="<%= votes[0].length %>" max="<%= votes[0].length + votes[1].length %>"></progress>
+                <% else %>
+                    <progress class="like-ratio" value="<%= votes[0].length %>" max="<%= votes[0].length + votes[1].length %>"></progress>
+                <% end %>
+
+                <p class="vote-text dislikes-text-comments dislikes"> <%= votes[1].length%> </p>
 
                 <% if !Vote.get_has_user_voted_by_userId(current_user_id(), comment["id"], "comment", "dislike") %> 
                     <form action="/vote/dislike/<%= comment["id"] %>" method="post">
                         <input type="hidden" name="target" value="comment">
                         <button class="vote-button-button">
-                            <img src="/images/icons/thumbs-down.svg" class="vote-button dislike">
+                            <img src="/images/icons/thumbs-down-outline.svg" class="vote-button dislike">
                         </button>
                     </form>  
                 <% else %>
@@ -143,7 +159,7 @@
                         <input type="hidden" name="target" value="comment">
                         <input type="hidden" name="_method" value="delete">
                         <button class="vote-button-button">
-                            <img src="/images/icons/thumbs-down-outline.svg" class="vote-button dislike">
+                            <img src="/images/icons/thumbs-down.svg" class="vote-button dislike">
                         </button>
                     </form> 
                 <% end %>

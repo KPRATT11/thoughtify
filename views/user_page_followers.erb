@@ -43,6 +43,9 @@
 <div class="followers-container">
     <% followers.each do |follower_id| %>
         <% user = User.get_single_user_by_id(follower_id["follower"]) %>
-        <a href="/user/<%= user["id"] %>"><h3><%= user["first_name"]%> <%= user["last_name"]%></h3></a>
+         <div class="card user-result-card">
+            <img class="user-result-profile-pic" src="https://avatars.dicebear.com/api/bottts/<%= user["id"] %>.svg" alt="">
+            <a class="user-result-name" href="/user/<%= user["id"] %>"><h2><%= user["first_name"]%> <%= user["last_name"]%></h2></a>
+        </div>
     <% end %>
 </div>

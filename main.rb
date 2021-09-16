@@ -36,10 +36,12 @@ end
 
 # Thoughts
 get "/create-thought" do
+    redirect "/login" unless logged_in?
     erb(:create_thought)
 end
 
 get "/edit-thought/:id" do
+    redirect "/" unless logged_in?
     thought = Thought.get_single_thought_by_id(params[:id])
     erb(:edit_thought, locals: {thought: thought})
 end
@@ -95,7 +97,7 @@ end
 
 delete "/comment/:id" do
     redirect back unless logged_in?
-    Comment.delete_comment_by_id(params[:id])
+    Comment.delete_comment_by_id(params[:id], current_user_id)
     redirect "/"
 end
 
