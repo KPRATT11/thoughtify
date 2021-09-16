@@ -1,7 +1,8 @@
 <div class="card card-narrow">
     <form action="/thought/<%= thought["id"]%>" method="post">
-        <input type="hidden" name="_method" value="put">
+        <input type="hidden" name="_method" value="put" required>
         <input 
+        required
         class="input input-light input-block" 
         name="title" 
         type="text" 
@@ -9,6 +10,7 @@
         placeholder="Title..."
         >
         <textarea 
+        required
         class="input input-light input-text-area input-block" 
         name="content" 
         cols="30" 

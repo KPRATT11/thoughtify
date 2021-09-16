@@ -191,6 +191,10 @@ progress[value]::-moz-progress-bar {
   background: #19de68;
 }
 
+.like-ratio-grey[value] {
+  background-color: #5a5a69;
+}
+
 .vote-button-button {
   background-color: rgba(255, 255, 255, 0);
   border: none;
@@ -453,5 +457,23 @@ progress[value]::-moz-progress-bar {
   margin-top: 60px;
   font-size: 28px;
   color: white;
+}
+
+.vote-text {
+  font-weight: bold;
+  font-size: 24px;
+  position: absolute;
+  width: 10px;
+  padding: 0px;
+  bottom: 20px;
+}
+
+.dislikes {
+  left: 740px;
+  color: #f75b5b;
+}
+
+.likes {
+  color: #19de68;
 }
 /*# sourceMappingURL=style.css.map */

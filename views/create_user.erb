@@ -1,15 +1,11 @@
-<form action="/user" method="post">
-    <label for="">First name</label>
-    <input type="text" name="first_name">
+<div class="card card-narrow">
+    <form action="/user" method="post">
+        <input class="input input-light input-block" type="text" name="first_name" placeholder="first name..." required>
+        <input class="input input-light input-block" type="text" name="second_name" placeholder="last name..." required>
+        <input class="input input-light input-block" type="email" name="email" placeholder="email..." required>
+        <input class="input input-light input-block" type="password" name="password" placeholder="password..." required>
 
-    <label for="">Last name</label>
-    <input type="text" name="second_name">
+        <button class="large-button large-button-positive">Create Account</button>
+    </form>
+</div>
 
-    <label for="">email</label>
-    <input type="email" name="email">
-
-    <label for="">password</label>
-    <input type="password" name="password">
-
-    <button>Sign up</button>
-</form>

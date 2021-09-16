@@ -74,8 +74,16 @@
                     </form> 
                 <% end %>
 
-                <progress class="like-ratio" value="<%= votes[0].length %>" max="<%= votes[0].length + votes[1].length %>"></progress>
+                <p class="vote-text likes"> <%= votes[0].length%> </p>
 
+                <% if votes[0].length + votes[1].length == 0 %>
+                    <progress class="like-ratio like-ratio-grey" value="<%= votes[0].length %>" max="<%= votes[0].length + votes[1].length %>"></progress>
+                <% else %>
+                    <progress class="like-ratio" value="<%= votes[0].length %>" max="<%= votes[0].length + votes[1].length %>"></progress>
+                <% end %>
+
+                <p class="vote-text dislikes"> <%= votes[1].length%> </p>
+                
                 <% if !Vote.get_has_user_voted_by_userId(current_user_id(), thought["id"], "post", "dislike") %> 
                     <form action="/vote/dislike/<%= thought["id"] %>" method="post">
                         <input type="hidden" name="target" value="post">

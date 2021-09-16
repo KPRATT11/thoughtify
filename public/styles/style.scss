@@ -187,6 +187,9 @@ progress[value]::-webkit-progress-value{
 progress[value]::-moz-progress-bar{
     background: $color-green;
 }
+.like-ratio-grey[value]{
+    background-color: rgb(90, 90, 105);
+}
 .vote-button-button{
     background-color: rgba(255,255,255,0);
     border: none;
@@ -420,4 +423,20 @@ progress[value]::-moz-progress-bar{
     margin-top: 60px;
     font-size: 28px;
     color: white;
+}
+.vote-text{
+    font-weight: bold;
+    font-size: 24px;
+    position: absolute;
+    width: 10px;
+    padding: 0px;
+    bottom: 20px;
+}
+.dislikes{
+    left: 740px;
+    color: $color-red
+}
+
+.likes{
+    color: $color-green
 }
