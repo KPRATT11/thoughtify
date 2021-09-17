@@ -1,0 +1,95 @@
+Date : 2021-09-17 13:10:15
+Directory : /home/keeganpratt/sei/projects/02-crud
+Total : 51 files,  3336 codes, 22 comments, 339 blanks, all 3697 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| XML        |         15 |      1,057 |          0 |         13 |      1,070 |
+| erb        |         13 |        621 |          0 |         83 |        704 |
+| Ruby       |         15 |        584 |         19 |        104 |        707 |
+| SCSS       |          1 |        501 |          0 |         32 |        533 |
+| CSS        |          1 |        490 |          2 |         91 |        583 |
+| SQL        |          1 |         43 |          0 |          7 |         50 |
+| JavaScript |          4 |         35 |          1 |          8 |         44 |
+| Gemfile    |          1 |          5 |          0 |          1 |          6 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                   |         51 |      3,336 |         22 |        339 |      3,697 |
+| db                                                                                  |          2 |         51 |          0 |          8 |         59 |
+| helpers                                                                             |          3 |         22 |          0 |          3 |         25 |
+| models                                                                              |          6 |        333 |          6 |         47 |        386 |
+| public                                                                              |         21 |      2,083 |          3 |        144 |      2,230 |
+| public/images                                                                       |         15 |      1,057 |          0 |         13 |      1,070 |
+| public/images/branding                                                              |          1 |        271 |          0 |          1 |        272 |
+| public/images/graphics                                                              |          4 |        190 |          0 |          2 |        192 |
+| public/images/icons                                                                 |         10 |        596 |          0 |         10 |        606 |
+| public/scripts                                                                      |          4 |         35 |          1 |          8 |         44 |
+| public/styles                                                                       |          2 |        991 |          2 |        123 |      1,116 |
+| public/styles/css                                                                   |          1 |        490 |          2 |         91 |        583 |
+| tests                                                                               |          1 |          0 |          0 |          1 |          1 |
+| views                                                                               |         13 |        621 |          0 |         83 |        704 |
++-------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                            | language   | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| /home/keeganpratt/sei/projects/02-crud/Gemfile                                      | Gemfile    |          5 |          0 |          1 |          6 |
+| /home/keeganpratt/sei/projects/02-crud/config.ru                                    | Ruby       |          2 |          0 |          4 |          6 |
+| /home/keeganpratt/sei/projects/02-crud/db/db_connectors.rb                          | Ruby       |          8 |          0 |          1 |          9 |
+| /home/keeganpratt/sei/projects/02-crud/db/schema.sql                                | SQL        |         43 |          0 |          7 |         50 |
+| /home/keeganpratt/sei/projects/02-crud/db_console.rb                                | Ruby       |          8 |          0 |          2 |         10 |
+| /home/keeganpratt/sei/projects/02-crud/helpers/auth.rb                              | Ruby       |         16 |          0 |          3 |         19 |
+| /home/keeganpratt/sei/projects/02-crud/helpers/globals.rb                           | Ruby       |          1 |          0 |          0 |          1 |
+| /home/keeganpratt/sei/projects/02-crud/helpers/sanitize.rb                          | Ruby       |          5 |          0 |          0 |          5 |
+| /home/keeganpratt/sei/projects/02-crud/main.rb                                      | Ruby       |        211 |          9 |         43 |        263 |
+| /home/keeganpratt/sei/projects/02-crud/models/comment.rb                            | Ruby       |         44 |          2 |          7 |         53 |
+| /home/keeganpratt/sei/projects/02-crud/models/follower.rb                           | Ruby       |         36 |          0 |          6 |         42 |
+| /home/keeganpratt/sei/projects/02-crud/models/thought.rb                            | Ruby       |        107 |          1 |         14 |        122 |
+| /home/keeganpratt/sei/projects/02-crud/models/topic.rb                              | Ruby       |         14 |          0 |          2 |         16 |
+| /home/keeganpratt/sei/projects/02-crud/models/user.rb                               | Ruby       |         80 |          1 |         10 |         91 |
+| /home/keeganpratt/sei/projects/02-crud/models/vote.rb                               | Ruby       |         52 |          2 |          8 |         62 |
+| /home/keeganpratt/sei/projects/02-crud/public/images/branding/Logo.svg              | XML        |        271 |          0 |          1 |        272 |
+| /home/keeganpratt/sei/projects/02-crud/public/images/graphics/empty.svg             | XML        |          1 |          0 |          0 |          1 |
+| /home/keeganpratt/sei/projects/02-crud/public/images/graphics/nousers.svg           | XML        |          1 |          0 |          0 |          1 |
+| /home/keeganpratt/sei/projects/02-crud/public/images/graphics/search-background.svg | XML        |         96 |          0 |          1 |         97 |
+| /home/keeganpratt/sei/projects/02-crud/public/images/graphics/welcome.svg           | XML        |         92 |          0 |          1 |         93 |
+| /home/keeganpratt/sei/projects/02-crud/public/images/icons/comment.svg              | XML        |         59 |          0 |          1 |         60 |
+| /home/keeganpratt/sei/projects/02-crud/public/images/icons/edit.svg                 | XML        |         59 |          0 |          1 |         60 |
+| /home/keeganpratt/sei/projects/02-crud/public/images/icons/login.svg                | XML        |         59 |          0 |          1 |         60 |
+| /home/keeganpratt/sei/projects/02-crud/public/images/icons/logout.svg               | XML        |         59 |          0 |          1 |         60 |
+| /home/keeganpratt/sei/projects/02-crud/public/images/icons/search.svg               | XML        |         59 |          0 |          1 |         60 |
+| /home/keeganpratt/sei/projects/02-crud/public/images/icons/thumbs-down-outline.svg  | XML        |         60 |          0 |          1 |         61 |
+| /home/keeganpratt/sei/projects/02-crud/public/images/icons/thumbs-down.svg          | XML        |         59 |          0 |          1 |         60 |
+| /home/keeganpratt/sei/projects/02-crud/public/images/icons/thumbs-up-outline.svg    | XML        |         64 |          0 |          1 |         65 |
+| /home/keeganpratt/sei/projects/02-crud/public/images/icons/thumbs-up.svg            | XML        |         59 |          0 |          1 |         60 |
+| /home/keeganpratt/sei/projects/02-crud/public/images/icons/trash.svg                | XML        |         59 |          0 |          1 |         60 |
+| /home/keeganpratt/sei/projects/02-crud/public/scripts/characterCounter.js           | JavaScript |          6 |          0 |          3 |          9 |
+| /home/keeganpratt/sei/projects/02-crud/public/scripts/commentScrollPersistor.js     | JavaScript |          9 |          0 |          1 |         10 |
+| /home/keeganpratt/sei/projects/02-crud/public/scripts/popup.js                      | JavaScript |          9 |          0 |          3 |         12 |
+| /home/keeganpratt/sei/projects/02-crud/public/scripts/scrollPersistor.js            | JavaScript |         11 |          1 |          1 |         13 |
+| /home/keeganpratt/sei/projects/02-crud/public/styles/css/style.css                  | CSS        |        490 |          2 |         91 |        583 |
+| /home/keeganpratt/sei/projects/02-crud/public/styles/style.scss                     | SCSS       |        501 |          0 |         32 |        533 |
+| /home/keeganpratt/sei/projects/02-crud/seed.rb                                      | Ruby       |          0 |          4 |          3 |          7 |
+| /home/keeganpratt/sei/projects/02-crud/tests/db_tests.rb                            | Ruby       |          0 |          0 |          1 |          1 |
+| /home/keeganpratt/sei/projects/02-crud/views/create_thought.erb                     | erb        |         16 |          0 |          1 |         17 |
+| /home/keeganpratt/sei/projects/02-crud/views/create_user.erb                        | erb        |         16 |          0 |          5 |         21 |
+| /home/keeganpratt/sei/projects/02-crud/views/edit_comment.erb                       | erb        |         17 |          0 |          0 |         17 |
+| /home/keeganpratt/sei/projects/02-crud/views/edit_thought.erb                       | erb        |         24 |          0 |          1 |         25 |
+| /home/keeganpratt/sei/projects/02-crud/views/index.erb                              | erb        |         98 |          0 |         16 |        114 |
+| /home/keeganpratt/sei/projects/02-crud/views/layout.erb                             | erb        |         43 |          0 |          4 |         47 |
+| /home/keeganpratt/sei/projects/02-crud/views/login.erb                              | erb        |         14 |          0 |          4 |         18 |
+| /home/keeganpratt/sei/projects/02-crud/views/search_user_results.erb                | erb        |         19 |          0 |          1 |         20 |
+| /home/keeganpratt/sei/projects/02-crud/views/thought.erb                            | erb        |        159 |          0 |         25 |        184 |
+| /home/keeganpratt/sei/projects/02-crud/views/user_edit_bio.erb                      | erb        |         16 |          0 |          0 |         16 |
+| /home/keeganpratt/sei/projects/02-crud/views/user_page.erb                          | erb        |        107 |          0 |         16 |        123 |
+| /home/keeganpratt/sei/projects/02-crud/views/user_page_followers.erb                | erb        |         46 |          0 |          5 |         51 |
+| /home/keeganpratt/sei/projects/02-crud/views/user_page_following.erb                | erb        |         46 |          0 |          5 |         51 |
+| Total                                                                               |            |      3,336 |         22 |        339 |      3,697 |
++-------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
