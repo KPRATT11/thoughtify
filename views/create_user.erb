@@ -9,5 +9,12 @@
     </form>
 </div>
 
+<div class="popup popup-negative">
+    Account already exists with that email address
+    <button class="popup-cancel popup-negative"> okay </button>
+</div>
 
+<% if popup %>
+    <script src="/scripts/popup.js"></script>
+<% end %>
 

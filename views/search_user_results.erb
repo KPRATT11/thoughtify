@@ -6,7 +6,10 @@
 <div>
     <% if results == nil %>
         <img src="/images/graphics/search-background.svg" alt="">
-    <%else%>
+    <% elsif results.to_a.length ==  0 %>
+        <img class="graphic" src="/images/graphics/nousers.svg" alt="">
+        <h3 class="nothing-found">No Names Found</h3>
+    <% else %>
         <% results.each do |user| %>
             <div class="card user-result-card">
                 <img class="user-result-profile-pic" src="https://avatars.dicebear.com/api/bottts/<%= user["id"] %>.svg" alt="">

@@ -481,10 +481,12 @@ progress[value]::-moz-progress-bar{
     border-radius: 4px;
 }
 .popup{
+    display: none;
+    transition: all 0.4s;
     opacity: 0;
     padding-top: 20px;
     font-size: 30px;
-    height: 80px;
+    height: 100px;
     width: 400px;
     text-align: center;
     z-index: 1;
@@ -496,7 +498,7 @@ progress[value]::-moz-progress-bar{
     margin-left: -200px; /* Negative half of width. */
 }
 .popup-negative{
-    background-color: rgba(206, 54, 54, 0.63);
+    background-color: rgba(206, 54, 54, 0.73);
     color: white;
 }
 .popup-cancel{
@@ -509,5 +511,15 @@ progress[value]::-moz-progress-bar{
     margin-top: 10px;
 }
 .popup-showing{
+    display: block;
     opacity: 100;
+}
+
+.nothing-found{
+    padding-top: 0px;
+    font-size: 80px;
+    color: $color-input-light;
+}
+.graphic{
+    width: 300px;
 }

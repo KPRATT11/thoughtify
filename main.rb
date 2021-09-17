@@ -27,11 +27,25 @@ get "/" do
 end
 
 get "/login" do
-    erb(:login)
+    if params[:popup]
+        popup = true
+    else
+        popup = false
+    end
+    erb(:login, locals: {
+        popup: popup
+    })
 end
 
 get "/signup" do
-    erb(:create_user)
+    if params[:popup]
+        popup = true
+    else
+        popup = false
+    end
+    erb(:create_user, locals: {
+        popup: popup
+    })
 end
 
 # Thoughts
@@ -142,7 +156,7 @@ post "/session" do
             session[:user_id] = user["id"]
             redirect "/"
         else
-            redirect "/login"
+            redirect "/login?popup=t"
         end
     end
     redirect "/"
@@ -168,8 +182,11 @@ get "/users" do
 end
 
 post "/user" do
-    User.post_user(params[:first_name], params[:second_name], params[:email], params[:password])
-    redirect "/login"
+
+    if User.post_user(params[:first_name], params[:second_name], params[:email], params[:password])
+        redirect "/login"
+    end
+    redirect "/signup?popup=t"
 end
 
 put "/user/:id" do

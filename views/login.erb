@@ -8,7 +8,11 @@
     </form>
 </div>
 
-<div class="popup popup-negative popup-showing">
+<div class="popup popup-negative">
     Invalid Email/Password
     <button class="popup-cancel popup-negative"> okay </button>
 </div>
+
+<% if popup %>
+    <script src="/scripts/popup.js"></script>
+<% end %>

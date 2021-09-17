@@ -19,89 +19,94 @@
 <% end %>
 
 <div class="thoughts-container">
-    <% thoughts.each do |thought|%>
-        <div class="card">
-            <% user = User.get_single_user_by_id(thought["user_id"])%>
-            <% votes = Vote.get_some_votes_by_thought_id(thought["id"])%>
+    <% if thoughts.to_a.length == 0 %>
+        <img class="graphic" src="/images/graphics/empty.svg" alt="">
+        <h3 class="nothing-found">Nothing Here</h3>
+    <% else %>
+        <% thoughts.each do |thought|%>
+            <div class="card">
+                <% user = User.get_single_user_by_id(thought["user_id"])%>
+                <% votes = Vote.get_some_votes_by_thought_id(thought["id"])%>
 
-            <a href="/user/<%= user["id"] %>">
-                <h3 class="card-user"><%= user["first_name"]%> <%= user["last_name"]%></h3>
-            </a>
+                <a href="/user/<%= user["id"] %>">
+                    <h3 class="card-user"><%= user["first_name"]%> <%= user["last_name"]%></h3>
+                </a>
 
-            <img class="card-profile-pic" src="https://avatars.dicebear.com/api/bottts/<%= user["id"] %>.svg" alt="">
+                <img class="card-profile-pic" src="https://avatars.dicebear.com/api/bottts/<%= user["id"] %>.svg" alt="">
 
-            <% if Thought.user_owns_thought(thought["id"], current_user_id)%>
-                <div class="action-icons">
-                    <form action="/thought/<%= thought["id"] %>" method="post">
-                        <input type="hidden" name="_method" value="delete">
-                        <button class="action-button"><img src="images/icons/trash.svg" class="action action-del"></button>
-                        <div class="tooltip tooltip-del">
-                            Delete
-                        </div>
-                    </form>
+                <% if Thought.user_owns_thought(thought["id"], current_user_id)%>
+                    <div class="action-icons">
+                        <form action="/thought/<%= thought["id"] %>" method="post">
+                            <input type="hidden" name="_method" value="delete">
+                            <button class="action-button"><img src="images/icons/trash.svg" class="action action-del"></button>
+                            <div class="tooltip tooltip-del">
+                                Delete
+                            </div>
+                        </form>
 
-                    <form action="/edit-thought/<%= thought["id"] %>" method="get">
-                        <button class="action-button"><img src="images/icons/edit.svg" class="action action-edit"></button>
-                        <div class="tooltip tooltip-edit">
-                            Edit
-                        </div>
-                    </form>
+                        <form action="/edit-thought/<%= thought["id"] %>" method="get">
+                            <button class="action-button"><img src="images/icons/edit.svg" class="action action-edit"></button>
+                            <div class="tooltip tooltip-edit">
+                                Edit
+                            </div>
+                        </form>
+                    </div>
+                <% end %>
+
+                <a href="/thought/<%= thought["id"] %>">
+                    <h2 class="card-title"><%= thought["title"] %></h2>
+                </a>
+
+                
+                <a href="/thought/<%= thought["id"] %>"><p class="card-content"> <%= thought["content"]%> </p></a> 
+
+                <div class="vote-container">
+                    <% if !Vote.get_has_user_voted_by_userId(current_user_id(), thought["id"], "post", "like") %> 
+                        <form action="/vote/like/<%= thought["id"] %>" method="post">
+                            <input type="hidden" name="target" value="post">
+                            <button class="vote-button-button">
+                                <img src="/images/icons/thumbs-up-outline.svg" class="vote-button like">
+                            </button>
+                        </form>  
+                    <% else %>
+                        <form action="/vote/<%= thought["id"] %>" method="post">
+                            <input type="hidden" name="target" value="post">
+                            <input type="hidden" name="_method" value="delete">
+                            <button class="vote-button-button">
+                                <img src="/images/icons/thumbs-up.svg" class="vote-button like">
+                            </button>
+                        </form> 
+                    <% end %>
+
+                    <p class="vote-text likes"> <%= votes[0].length%> </p>
+
+                    <% if votes[0].length + votes[1].length == 0 %>
+                        <progress class="like-ratio like-ratio-grey" value="<%= votes[0].length %>" max="<%= votes[0].length + votes[1].length %>"></progress>
+                    <% else %>
+                        <progress class="like-ratio" value="<%= votes[0].length %>" max="<%= votes[0].length + votes[1].length %>"></progress>
+                    <% end %>
+
+                    <p class="vote-text dislikes"> <%= votes[1].length%> </p>
+
+                    <% if !Vote.get_has_user_voted_by_userId(current_user_id(), thought["id"], "post", "dislike") %> 
+                        <form action="/vote/dislike/<%= thought["id"] %>" method="post">
+                            <input type="hidden" name="target" value="post">
+                            <button class="vote-button-button">
+                                <img src="/images/icons/thumbs-down-outline.svg" class="vote-button dislike">
+                            </button>
+                        </form>  
+                    <% else %>
+                        <form action="/vote/<%= thought["id"] %>" method="post">
+                            <input type="hidden" name="target" value="post">
+                            <input type="hidden" name="_method" value="delete">
+                            <button class="vote-button-button">
+                                <img src="/images/icons/thumbs-down.svg" class="vote-button dislike">
+                            </button>
+                        </form> 
+                    <% end %>
                 </div>
-            <% end %>
-
-            <a href="/thought/<%= thought["id"] %>">
-                <h2 class="card-title"><%= thought["title"] %></h2>
-            </a>
-
-            
-            <a href="/thought/<%= thought["id"] %>"><p class="card-content"> <%= thought["content"]%> </p></a> 
-
-            <div class="vote-container">
-                <% if !Vote.get_has_user_voted_by_userId(current_user_id(), thought["id"], "post", "like") %> 
-                    <form action="/vote/like/<%= thought["id"] %>" method="post">
-                        <input type="hidden" name="target" value="post">
-                        <button class="vote-button-button">
-                            <img src="/images/icons/thumbs-up-outline.svg" class="vote-button like">
-                        </button>
-                    </form>  
-                <% else %>
-                    <form action="/vote/<%= thought["id"] %>" method="post">
-                        <input type="hidden" name="target" value="post">
-                        <input type="hidden" name="_method" value="delete">
-                        <button class="vote-button-button">
-                            <img src="/images/icons/thumbs-up.svg" class="vote-button like">
-                        </button>
-                    </form> 
-                <% end %>
-
-                <p class="vote-text likes"> <%= votes[0].length%> </p>
-
-                <% if votes[0].length + votes[1].length == 0 %>
-                    <progress class="like-ratio like-ratio-grey" value="<%= votes[0].length %>" max="<%= votes[0].length + votes[1].length %>"></progress>
-                <% else %>
-                    <progress class="like-ratio" value="<%= votes[0].length %>" max="<%= votes[0].length + votes[1].length %>"></progress>
-                <% end %>
-
-                <p class="vote-text dislikes"> <%= votes[1].length%> </p>
-
-                <% if !Vote.get_has_user_voted_by_userId(current_user_id(), thought["id"], "post", "dislike") %> 
-                    <form action="/vote/dislike/<%= thought["id"] %>" method="post">
-                        <input type="hidden" name="target" value="post">
-                        <button class="vote-button-button">
-                            <img src="/images/icons/thumbs-down-outline.svg" class="vote-button dislike">
-                        </button>
-                    </form>  
-                <% else %>
-                    <form action="/vote/<%= thought["id"] %>" method="post">
-                        <input type="hidden" name="target" value="post">
-                        <input type="hidden" name="_method" value="delete">
-                        <button class="vote-button-button">
-                            <img src="/images/icons/thumbs-down.svg" class="vote-button dislike">
-                        </button>
-                    </form> 
-                <% end %>
             </div>
-        </div>
+        <% end %>
     <% end %> 
 </div>
 
