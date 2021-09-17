@@ -47,18 +47,15 @@ module User
     def self.get_some_users_by_search_query(search_query)
         search_query = search_query.downcase
         split_query = search_query.split(" ")
-        split_query = split_query.map do | word |
-            word.capitalize
-        end
         if split_query.length > 1
-            results = exec_sql("SELECT * FROM users 
-                WHERE 
-                first_name like '%#{split_query[0]}%' OR 
-                first_name like '%#{split_query[1]}%' OR 
-                last_name like '%#{split_query[0]}%' OR 
-                last_name like '%#{split_query[1]}%';")
+            sqlString = "SELECT * FROM users WHERE"
+            split_query.each do |query|
+                sqlString = sqlString + " first_name ILIKE '%#{query}%' OR last_name ILIKE '%#{query}%' OR "
+            end
+            sqlString = sqlString.slice(0...-3)
+            results = exec_sql(sqlString)
         else
-            results = exec_sql("SELECT * FROM users WHERE first_name like '%#{split_query[0]}%' or last_name like '%#{split_query[0]}%';")
+            results = exec_sql("SELECT * FROM users WHERE first_name ILIKE '%#{split_query[0]}%' or last_name ILIKE '%#{split_query[0]}%';")
         end
         return results
     end
