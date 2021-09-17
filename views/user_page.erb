@@ -3,7 +3,7 @@
     <img class="user-details-profile-pic" src="https://avatars.dicebear.com/api/bottts/<%= user["id"] %>.svg" alt="">
     <h1 class="user-details-name"><%= user["first_name"] %> <%= user["last_name"] %></h1>
 
-    <% if logged_in? and !is_current_user?(user["id"])%>
+    <% if logged_in? and user["id"] != current_user_id%>
         <% if Follower.is_following?(current_user_id, user["id"] )%>
             <form action="/follow" method="post">
                 <input type="hidden" name="_method" value="delete">
@@ -19,7 +19,7 @@
     <%end%>
     <div class="bio">
         <h3 class="user-details-bio"><%= user['bio']%></h3>
-        <% if is_current_user?(user["id"])%>
+        <% if user["id"] == current_user_id%>
             <form  action="/user_edit_bio/<%= user['id']%>">
                 <button class="edit-bio">Edit bio</button>
             </form>

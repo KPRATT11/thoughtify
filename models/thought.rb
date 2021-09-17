@@ -62,7 +62,7 @@ module Thought
         end
         all_user_ids = all_user_ids.slice(0..-2)
         all_user_ids += ")"
-        results = exec_sql("select * from posts where user_id in #{all_user_ids}")
+        results = exec_sql("select * from posts where user_id in #{all_user_ids}  ORDER BY post_date DESC")
         return results
     end
 

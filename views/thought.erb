@@ -107,6 +107,7 @@
             <% votes = Vote.get_some_votes_by_comment_id(comment["id"])%>
             <% user = User.get_single_user_by_id(comment["user_id"]) %>
             <a href="/user/<%= user["id"] %>"><p class="card-user"><%= user["first_name"]%> <%= user["last_name"]%></p></a>
+            <img class="card-profile-pic" src="https://avatars.dicebear.com/api/bottts/<%= user["id"] %>.svg" alt="">
             <p class="card-content card-content-comment"><%= comment["content"]%></p>
             
 
@@ -133,7 +134,7 @@
             <div class="vote-container">
                 <% if !Vote.get_has_user_voted_by_userId(current_user_id(), comment["id"], "comment", "like") %> 
                     <form action="/vote/like/<%= comment["id"] %>" method="post">
-                        <input type="hidden" name="target" value="post">
+                        <input type="hidden" name="target" value="comment">
                         <button class="vote-button-button">
                             <img src="/images/icons/thumbs-up-outline.svg" class="vote-button like">
                         </button>

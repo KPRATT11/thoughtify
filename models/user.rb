@@ -45,8 +45,11 @@ module User
     end
 
     def self.get_some_users_by_search_query(search_query)
+        search_query = search_query.downcase
         split_query = search_query.split(" ")
-
+        split_query = split_query.map do | word |
+            word.capitalize
+        end
         if split_query.length > 1
             results = exec_sql("SELECT * FROM users 
                 WHERE 
@@ -65,6 +68,8 @@ module User
         if self.get_single_user_by_email(email)
             return false
         end
+        first_name = first_name.downcase.capitalize
+        second_name = second_name.downcase.capitalize
         digested_password = digest_password(password)
         creation_date = Time.now.strftime("%d/%m/%Y %H:%M")
         exec_sql("INSERT INTO users (first_name, last_name, email, password_digest, created_at) VALUES ('#{first_name}', '#{second_name}', '#{email}', '#{digested_password}', '#{creation_date}');")

@@ -36,7 +36,7 @@ a {
 }
 
 .main-action:hover {
-  background-color: rgba(255, 255, 255, 0);
+  background-color: #7283af;
   color: #0a1a44;
   box-shadow: none;
 }
@@ -69,6 +69,7 @@ a {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   border-radius: 0px 0px 25px 25px;
+  user-select: none;
 }
 
 .thoughts-container {
@@ -274,6 +275,10 @@ progress[value]::-moz-progress-bar {
 .input-text-area-comment {
   height: 105px;
   padding-bottom: 40px;
+}
+
+.bio-text-area {
+  height: 325px;
 }
 
 .input:focus {
@@ -507,6 +512,10 @@ progress[value]::-moz-progress-bar {
   color: white;
 }
 
+.character-counter-bio {
+  left: 570px;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -561,12 +570,14 @@ progress[value]::-moz-progress-bar {
 }
 
 .nothing-found {
+  user-select: none;
   padding-top: 0px;
   font-size: 80px;
   color: #7283af;
 }
 
 .graphic {
+  user-select: none;
   width: 300px;
 }
 /*# sourceMappingURL=style.css.map */

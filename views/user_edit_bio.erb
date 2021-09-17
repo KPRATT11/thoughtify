@@ -1,5 +1,16 @@
-<form action="/user_edit_bio/<%= user["id"] %>" method="post">
-    <input type="hidden" name="_method" value="patch">
-    <textarea name="bio" cols="30" rows="10"><%= user["bio"].strip %></textarea>
-    <button>Submit</button>
-</form>
+<div class="card card-narrow">
+    <form action="/user_edit_bio/<%= user["id"] %>" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <textarea 
+            maxlength="450"
+            class="input input-light input-text-area input-block bio-text-area" 
+            name="content" 
+            cols="40" 
+            rows="10"
+            placeholder="Add Bio..."
+            ><%= user["bio"] %></textarea>
+        <button class="large-button large-button-positive">Submit</button>
+        <div class="character-counter character-counter-bio"> <p class="character-count">0</p> <p class="bold">/</p> <p>450</p> </div>
+    </form>
+</div>
+<script src="/scripts/characterCounter.js"></script>

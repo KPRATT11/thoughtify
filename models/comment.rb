@@ -18,7 +18,7 @@ module Comment
     end
 
     def self.get_some_comments_by_thought(thought_id)
-        results = exec_sql("SELECT * FROM comments WHERE target_id = #{thought_id }")
+        results = exec_sql("SELECT * FROM comments WHERE target_id = #{thought_id } ORDER BY comment_date DESC")
     end
 
     def self.put_comment_by_id(id, content, user_id)

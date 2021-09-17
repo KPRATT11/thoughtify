@@ -3,6 +3,7 @@
         <input type="hidden" name="_method" value="put" required>
         <textarea 
         required
+        maxlength="150"
         class="input input-light input-text-area input-block" 
         name="content" 
         cols="30" 
@@ -10,5 +11,7 @@
         placeholder="Comment..."
         ><%= comment["content"] %></textarea>
         <button class="large-button large-button-positive">Submit</button>
+        <div class="character-counter"> <p class="character-count">0</p> <p class="bold">/</p> <p>150</p> </div>
     </form>
 </div>
+<script src="/scripts/characterCounter.js"></script>

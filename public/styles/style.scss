@@ -47,7 +47,7 @@ a{
     display: block;
 }
 .main-action:hover{
-    background-color: rgba(255,255,255, 0);
+    background-color: $color-input-light;
     color: $color-card;
     box-shadow: none;
 }
@@ -76,7 +76,8 @@ a{
     background-color: $color-dark-head;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    border-radius: 0px 0px 25px 25px
+    border-radius: 0px 0px 25px 25px;
+    user-select: none;
 }
 
 .thoughts-container{
@@ -263,7 +264,9 @@ progress[value]::-moz-progress-bar{
     height: 105px;
     padding-bottom: 40px;
 }
-
+.bio-text-area{
+    height: 325px;
+}
 .input:focus{
     outline: none;
 }
@@ -468,6 +471,9 @@ progress[value]::-moz-progress-bar{
     bottom: 308px;
     color: white;
 }
+.character-counter-bio{
+    left: 570px;
+}
 .bold{
     font-weight: bold;
 }
@@ -516,10 +522,12 @@ progress[value]::-moz-progress-bar{
 }
 
 .nothing-found{
+    user-select: none;
     padding-top: 0px;
     font-size: 80px;
     color: $color-input-light;
 }
 .graphic{
+    user-select: none;
     width: 300px;
 }
