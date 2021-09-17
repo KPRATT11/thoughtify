@@ -34,7 +34,7 @@ module Comment
     end
 
     def self.post_comment(content, target_id, user_id)
-        date = Time.now.strftime("%d/%m/%Y %H:%M")
+        date = Time.now.strftime('%Y-%m-%dT%H:%M:%S.%L%z')
         content = Sanitize.escape_quote(content)
         exec_sql("INSERT INTO comments (comment_date, content, target_id, user_id) VALUES 
         (

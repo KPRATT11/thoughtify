@@ -71,7 +71,7 @@ module User
         first_name = first_name.downcase.capitalize
         second_name = second_name.downcase.capitalize
         digested_password = digest_password(password)
-        creation_date = Time.now.strftime("%d/%m/%Y %H:%M")
+        creation_date = Time.now.strftime('%Y-%m-%dT%H:%M:%S.%L%z')
         exec_sql("INSERT INTO users (first_name, last_name, email, password_digest, created_at) VALUES ('#{first_name}', '#{second_name}', '#{email}', '#{digested_password}', '#{creation_date}');")
         return true
     end

@@ -91,7 +91,7 @@ module Thought
     def self.post_thought(user_id, thought_title, thought_content)
         thought_title = Sanitize.escape_quote(thought_title)
         thought_content = Sanitize.escape_quote(thought_content)
-        date = Time.now.strftime("%d/%m/%Y %H:%M")
+        date = Time.now.strftime('%Y-%m-%dT%H:%M:%S.%L%z')
         exec_sql("INSERT INTO posts (title, content, post_date, user_id) VALUES 
         (
             '#{thought_title}',
