@@ -60,9 +60,14 @@ module Thought
             all_user_ids += "#{result["follow_target"]}"
             all_user_ids += ","
         end
+
+        
         all_user_ids = all_user_ids.slice(0..-2)
         all_user_ids += ")"
-        results = exec_sql("select * from posts where user_id in #{all_user_ids}  ORDER BY post_date DESC")
+        if all_user_ids.length == 1 
+            return []
+        end
+        results = exec_sql("select * from posts where user_id in #{all_user_ids} ORDER BY post_date DESC")
         return results
     end
 

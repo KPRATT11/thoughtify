@@ -11,6 +11,11 @@ $color-input-dark-focus:rgb(34, 43, 70);
 $box-shadow: 4px 8px 8px 4px rgba(0,0,0,0.25);
 $box-shadow-hover: 6px 11px 10px 4px rgba(0,0,0,0.25);
 
+html {
+    overflow: -moz-scrollbars-vertical; 
+    overflow-y: scroll;
+}
+
 body{
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -143,6 +148,8 @@ a{
     font-size: 38px;
 }
 .card-content{
+    overflow-wrap: break-word;
+    width: 100%;
     margin-top: 12px;
     padding-top: 12px;
     padding-bottom: 12px;
